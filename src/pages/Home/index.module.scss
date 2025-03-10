@@ -1,12 +1,13 @@
 @use "../../styles/variables.scss" as *;
 @use "../../styles/mixins.scss" as *;
 
+// hero section
 .heroSection {
     background-color: $main-background-color;
     display: flex;
     margin: auto;
     justify-content: center;
-    gap: 5.625;
+    gap: 5.625em;
     padding-top: 5.125em;
     padding-bottom: 9.125em;
 
@@ -43,5 +44,50 @@
 
     &__button {
         @include button
+    }
+}
+
+
+// menu customization
+.customizationSection {
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-top: 5.625em;
+    padding-bottom: 6.375em;
+    gap: 6.125em;
+}
+
+.customizationSectionContent {
+    max-width: 27.375em;
+    margin-top: 3.125em;
+    margin-left: 9.375em;
+
+    &__title {
+        font-size: 1.875em;
+    }
+
+    &__para {
+        font-size: 1.25em;
+        margin-top: 1.875em;
+        margin-bottom: 3.25em;
+    }
+
+    &__button {
+        @include button
+    }
+}
+
+.customizationSectionImgWrapper {
+    &__firstImg {
+        margin-right: 20px;
+        width: 304px;
+        height: 455px;
+    }
+
+    &__secondeImg {
+        width: 341px;
+        height: 455px;
     }
 }
