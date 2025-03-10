@@ -5,17 +5,17 @@ import m from "./index.module.scss";
 function Header(): ReactElement {
     return (
         <header className={m.header}>
-            <img src={logo} alt="Menu Maker by Qwenta" />
+            <img src={logo} alt="Menu Maker by Qwenta" className={m.header__logo}/>
             <nav>
-                <ul>
+                <ul className={m.navbar}>
                     <li>
-                        <span>Exemples</span>
+                        <a href="" className={m.navbar__text} data-text="Exemples">Exemples</a>
                     </li>
                     <li>
-                        <a href="">Tarifs</a>
+                        <a href="" className={m.navbar__text} data-text="Tarifs">Tarifs</a>
                     </li>
                     <li>
-                        <span>Se Connecter</span>
+                        <span className={m.navbar__text} data-text="Se Connecter">Se Connecter</span>
                     </li>
                 </ul>
             </nav>
