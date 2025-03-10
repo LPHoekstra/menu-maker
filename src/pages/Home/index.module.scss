@@ -1,0 +1,47 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.heroSection {
+    background-color: $main-background-color;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    gap: 5.625;
+    padding-top: 5.125em;
+    padding-bottom: 9.125em;
+
+    &__imgWrapper {
+        position: relative;
+        height: 29.75em;
+        width: 27.375em;
+        border-radius: 0.5em;
+        border: 0.063em solid $brown;
+    }
+
+    &__img {
+        height: 100%;
+        width: 100%;
+        border-radius: 0.5em;
+        transform: translate(1.25em, -1.25em);
+    }
+
+}
+
+.heroSectionContent {
+    padding-top: 2em;
+    max-width: 32.5em;
+
+    &__title {
+        font-size: 2.625em;
+    }
+
+    &__para {
+        font-size: 1.25em;
+        margin-top: 2em;
+        margin-bottom: 3.25em;
+    }
+
+    &__button {
+        @include button
+    }
+}
