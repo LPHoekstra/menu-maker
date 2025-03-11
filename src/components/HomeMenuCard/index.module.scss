@@ -1,0 +1,46 @@
+@use "../../styles/variables.scss" as *;
+
+$border-radius: 0.313em;
+$number-color: #D97606;
+.mainBorder {
+    border: 1px solid $brown;
+    border-radius: $border-radius;
+    height: 11.875em;
+    width: 21.375em;
+}
+
+.contentWrapper {
+    height: 100%;
+    width: 100%;
+    border-radius: $border-radius;
+    background-color: $white;
+    transform: translate(0.625em, -0.813em);
+    padding: 0.875em;
+    box-sizing: border-box;
+    display: flex;
+
+    &__content {
+        font-size: 1em;
+        margin-top: 3.375em;
+    }
+
+    &__number {
+        font-family: "Epilogue", sans-serif;
+        font-size: 4.375em;
+        font-weight: 900;
+        text-shadow: 
+            -1px -1px 0 $number-color,  
+            1px -1px 0 $number-color,
+            -1px  1px 0 $number-color,
+            1px  1px 0 $number-color;
+        color: $white;
+    }
+
+    &__ellipse {
+        border-radius: 50%;
+        background-color: $brown;
+        height: 0.813em;
+        min-width: 0.813em;
+        margin: 0.313em 0.75em 0 0.5em;
+    }
+}

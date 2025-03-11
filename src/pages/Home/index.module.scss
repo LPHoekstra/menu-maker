@@ -1,6 +1,10 @@
 @use "../../styles/variables.scss" as *;
 @use "../../styles/mixins.scss" as *;
 
+p {
+    font-size: 1.25em;;
+}
+
 // hero section
 .heroSection {
     background-color: $main-background-color;
@@ -36,7 +40,6 @@
     }
 
     &__para {
-        font-size: 1.25em;
         margin-top: 2em;
         margin-bottom: 3.25em;
     }
@@ -59,12 +62,7 @@
     margin-top: 3.125em;
     margin-left: 9.375em;
 
-    &__title {
-        font-size: 1.875em;
-    }
-
     &__para {
-        font-size: 1.25em;
         margin-top: 1.875em;
         margin-bottom: 3.25em;
     }
@@ -81,4 +79,27 @@
         width: 21.313em;
         height: 28.438em;
     }
+}
+
+// how to create a menu section
+.createMenuSection {
+    background-color: $main-background-color;
+    padding-top: 6em;
+    padding-bottom: 9.375em;
+    gap: 3.75em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__titleWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.625em;
+    }
+}
+
+.createMenuCardWrapper {
+    display: flex;
+    gap: 2.375em;
 }
