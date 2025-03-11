@@ -1,0 +1,10 @@
+@use "../../styles/variables.scss" as *;
+
+.footer {
+    background-color: $white;
+    padding: 1.875em 6.875em 1.25em 0;
+    display: flex;
+    justify-content: end;
+    gap: 2em;
+    font-size: 0.875em;
+}
