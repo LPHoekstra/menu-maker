@@ -6,6 +6,8 @@ import firstImgInCustomization from "../../assets/nienke-broeksema-_hiPJ6Z0vao-u
 import Button from "../../components/Button";
 import HomeMenuCard from "../../components/HomeMenuCard";
 
+// TODO : img in webp format
+//        wave on top border second section
 function Home(): ReactElement {
     return (
         <>
