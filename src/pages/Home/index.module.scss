@@ -25,7 +25,6 @@
         border-radius: 0.5em;
         transform: translate(1.25em, -1.25em);
     }
-
 }
 
 .heroSectionContent {
@@ -41,14 +40,10 @@
         margin-top: 2em;
         margin-bottom: 3.25em;
     }
-
-    &__button {
-        @include button
-    }
 }
 
 
-// menu customization
+// menu customization section
 .customizationSection {
     background-color: $white;
     display: flex;
@@ -73,21 +68,17 @@
         margin-top: 1.875em;
         margin-bottom: 3.25em;
     }
-
-    &__button {
-        @include button
-    }
 }
 
 .customizationSectionImgWrapper {
     &__firstImg {
-        margin-right: 20px;
-        width: 304px;
-        height: 455px;
+        margin-right: 1.25em;
+        width: 19em;
+        height: 28.438em;
     }
 
     &__secondeImg {
-        width: 341px;
-        height: 455px;
+        width: 21.313em;
+        height: 28.438em;
     }
 }

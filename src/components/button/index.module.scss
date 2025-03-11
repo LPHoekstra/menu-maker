@@ -1,0 +1,47 @@
+@use "../../styles/variables.scss" as *;
+
+$border-radius: 0.313em;
+.button {
+    cursor: pointer;
+    position: relative;
+    padding: 2.25em 4.125em;
+    border-radius: $border-radius;
+    font-weight: 500;
+    z-index: 1;
+    
+    &_full {
+        background: linear-gradient(to right, $main-green, #9FD2C6);
+        border: none;
+        color: $white;
+    }
+    
+    &_empty {
+        background: none;
+        border: solid 1px $secondary-green;
+        color: $secondary-green;
+
+        &:hover {
+            color: $white;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #9FD3C7, #6DDAC1);
+        border-radius: $border-radius;
+        opacity: 0;
+        transition: opacity 300ms ease-out;
+        z-index: -1;
+    }
+
+    &:hover {
+        &::after {
+            opacity: 1;
+        }
+    }
+}
