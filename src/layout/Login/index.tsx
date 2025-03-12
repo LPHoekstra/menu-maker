@@ -12,15 +12,27 @@ function Login(): ReactElement {
     const navigate: NavigateFunction = useNavigate()
     const [isEmailSent, setIsEmailSent] = useState<boolean>(false)
     const [isEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false)
+    const [error, setError] = useState<string>("")
 
     const closeLogin: () => void = () => {
         navigate("/")
     }
 
-    const formHandler: FormEventHandler = (e: FormEvent) => {
+    const formHandler: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
         e.preventDefault()
+        const form = e.target as HTMLFormElement
+        const emailInput = form.elements.namedItem("email") as HTMLInputElement
+
+        const regExpEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        if (!regExpEmail.test(emailInput.value)) {
+            setError("Email invalide")
+            return
+        }
 
         setIsEmailSent(true)
+
+        // check if the token is added in cookie
+        // then redirect to the dashboard
         setIsEmailConfirmed(true)
     }
 
@@ -33,7 +45,7 @@ function Login(): ReactElement {
                 {/* if email is not confirmed, render the content. otherwise it show the success icon */}
                 {!isEmailConfirmed ?
                     <div className={m.contentWrapper}>
-                        <div className={m.unionWrapper}>
+                        <div className={m.iconWrapper}>
                             <img src={!isEmailSent ? union : letter} alt="" />
                         </div>
                         {/* if email is not sent, render the connexion form. otherwise it show the confirmation loaders */}
@@ -44,6 +56,7 @@ function Login(): ReactElement {
                                 <form onSubmit={formHandler} className={m.form}>
                                     <label htmlFor="email">adresse e-mail</label>
                                     <input type="email" name="email" id="email" autoComplete="email" className={m.form__input} />
+                                    {error && <span className={m.form__error}>{error}</span>}
                                     <Button content="Se connecter" type="full" />
                                 </form>
                             </>
@@ -56,7 +69,7 @@ function Login(): ReactElement {
                         <span className={m.contentWrapper__help}>Besoin d'aide ?</span>
                     </div>
                     :
-                    <div className={`${m.unionWrapper} ${m.unionWrapper_success}`}>
+                    <div className={`${m.iconWrapper} ${m.iconWrapper_success}`}>
                         <img src={check} alt="" />
                     </div>
                 }

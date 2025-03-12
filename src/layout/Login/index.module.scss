@@ -58,7 +58,7 @@
     }
 }
 
-.unionWrapper {
+.iconWrapper {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -95,5 +95,9 @@
         padding-left: 0.625rem;
         padding-right: 0.625rem;
         margin-bottom: 3.125rem;
+    }
+
+    &__error {
+        text-align: center;
     }
 }
