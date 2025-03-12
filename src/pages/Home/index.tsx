@@ -5,18 +5,25 @@ import secondeImgInCustomization from "../../assets/michelle-williams-yT69l1ubYh
 import firstImgInCustomization from "../../assets/nienke-broeksema-_hiPJ6Z0vao-unsplash 1.png";
 import Button from "../../components/Button";
 import HomeMenuCard from "../../components/HomeMenuCard";
+import { Link, Outlet } from "react-router";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
 
 // TODO : img in webp format
 //        wave on top border second section
 function Home(): ReactElement {
     return (
         <>
+            <Outlet />
+            <Header />
             {/* hero section */}
             <section className={m.heroSection}>
                 <article className={m.heroSectionContent}>
                     <h1 className={m.heroSectionContent__title}>Réalisez et diffusez votre menu personnalisé</h1>
                     <p className={m.heroSectionContent__para}>Grâce à Menu Maker, donnez à votre établissement sa propre identité. Créez votre menu en ligne et partagez-le sur toutes les plateformes !</p>
-                    <Button content="Se connecter" type="full" />
+                    <Link to="login">
+                        <Button content="Se connecter" type="full" />
+                    </Link>
                 </article>
                 <div className={m.heroSection__imgWrapper}>
                     <img src={heroImg} alt="Un dessert posé sur une carte" className={m.heroSection__img} />
@@ -27,7 +34,9 @@ function Home(): ReactElement {
                 <article className={m.customizationSectionContent}>
                     <h2>Personnalisez votre menu</h2>
                     <p className={m.customizationSectionContent__para}>Ajoutez vos plats, vos boissons, et organisez votre menu comme le souhaitez. Pour l’impression ou la diffusion en ligne, récupérez votre menu au format que vous souhaitez et diffusez-le auprès de votre clientèle !</p>
-                    <Button content="Je me lance" type="empty" />
+                    <Link to="login">
+                        <Button content="Je me lance" type="empty" />
+                    </Link>
                 </article>
                 <div>
                     <img src={firstImgInCustomization} alt="" className={m.customizationSectionImgWrapper__firstImg} />
@@ -46,6 +55,7 @@ function Home(): ReactElement {
                     <HomeMenuCard content="Enregistrez votre menu en PDF et diffusez-le sur vos plateformes de vente en ligne." number={3} />
                 </div>
             </section>
+            <Footer />
         </>
     )
 }

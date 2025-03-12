@@ -1,15 +1,9 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 import logo from "../../assets/logo.png";
 import m from "./index.module.scss";
-import { ModalContext } from "../../context";
+import { Link } from "react-router";
 
 function Header(): ReactElement {
-    const modal = useContext(ModalContext)
-
-    const closeModal = () => {
-        modal?.setModalIsOpen(true)
-    }
-
     return (
         <header className={m.header}>
             <img src={logo} alt="Menu Maker by Qwenta" className={m.header__logo} />
@@ -22,7 +16,7 @@ function Header(): ReactElement {
                         <a href="" className={m.navbar__text} data-text="Tarifs">Tarifs</a>
                     </li>
                     <li>
-                        <span className={m.navbar__text} data-text="Se Connecter" onClick={closeModal}>Se Connecter</span>
+                        <Link to="login" className={m.navbar__text} data-text="Se Connecter">Se Connecter</Link>
                     </li>
                 </ul>
             </nav>

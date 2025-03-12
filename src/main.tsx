@@ -1,12 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import { ModalProvider } from './context/index.tsx'
+import { BrowserRouter } from 'react-router'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ModalProvider>
+    <BrowserRouter>
       <App />
-    </ModalProvider>
+    </BrowserRouter>
   </StrictMode>,
 )
