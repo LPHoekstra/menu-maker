@@ -1,0 +1,22 @@
+@use "../../styles/variables.scss" as *;
+
+.article {
+    width: 100%; // 18.438em
+    height: 11.875em;
+    background-color: $white;
+    border-radius: 0.313em;
+    box-shadow: 0 0.25em 0.875em 0.625em rgba(0, 0, 0, 0.02);
+    
+    &__link {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__content {
+        font-family: "Epilogue", sans-serif;
+        font-size: 1.125rem;
+    }
+}

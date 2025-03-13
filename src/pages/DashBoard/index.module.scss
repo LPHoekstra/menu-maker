@@ -1,0 +1,49 @@
+@use "../../styles/variables.scss" as *;
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 7.81vh; // 80px
+    padding: 7.61vh /* 78px */ 5.75em 6.15vh /* 63px */ 6.75em;
+    background-color: $main-background-color;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.dashboardHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.875em;
+
+    &__imgWrapper {
+        width: 9.875em;
+        height: 8.25em;
+        border-radius: 0.313em;
+        background-color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__title {
+        font-size: 2.688em;
+    }
+}
+
+.cardMenuWrapper {
+    display: flex;
+    gap: 1.5em;
+}
+
+.goingFurtherSection {
+    &__title {
+        font-size: 1.563em;
+        font-weight: 500;
+    }
+
+    &__cardWrapper {
+        display: flex;
+        gap: 1.5em;
+        margin-top: 2.5em;
+    }
+}

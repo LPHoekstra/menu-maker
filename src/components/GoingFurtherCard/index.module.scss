@@ -1,0 +1,41 @@
+@use "../../styles/variables.scss" as*;
+
+
+$img-height: 13.438em;
+$content-height: 7.5em;
+$article-height: $img-height + $content-height;
+
+$border-radius: 0.625em;
+.article {
+    width: 100%; // 295px
+    height: $article-height; // 335px
+    background-color: $white;
+    border-radius: $border-radius;
+
+    a {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__img {
+        width: 100%;
+        height: $img-height;
+        object-fit: cover;
+        border-top-right-radius: $border-radius;
+        border-top-left-radius: $border-radius;
+    }
+
+}
+
+.titleWrapper {
+    height: $content-height; // 120px
+    box-shadow: 0 0.25em 0.875em rgba(0, 0, 0, 0.07);
+    display: flex;
+    align-items: center;
+    border-radius: $border-radius;
+
+    &__content {
+        padding: 0 3.125em;
+        font-size: 1em;
+    }
+}
