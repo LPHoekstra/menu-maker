@@ -1,10 +1,53 @@
 @use "../../styles/variables.scss" as *;
+@use "../ConnectedLayout/index.module.scss" as *;
 
-.footer {
+
+.footerHome,
+.footerConnected {
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        font-size: 0.875em;
+    }
+}
+// home style
+.footerHome {
     background-color: $white;
     padding: 1.875em 6.875em 1.25em 0;
     display: flex;
     justify-content: end;
-    gap: 2em;
-    font-size: 0.875em;
+    
+    ul {
+        display: flex;
+        gap: 2em;
+    }
+}
+
+// connected style
+.footerConnected {
+    position: relative;
+    width: 100%;
+    padding-top: 3.438em;
+
+    ul {
+        margin-left: $left-margin-content;
+    }
+
+    // line of 1px above the footer
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: $left-margin-content;
+        width: 2.5em;
+        height: 1px;
+        background-color: #ACACAC;
+    }
+
+    li {
+        margin-bottom: 2.25em;
+    }
 }

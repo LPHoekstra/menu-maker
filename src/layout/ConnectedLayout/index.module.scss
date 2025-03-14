@@ -1,45 +1,18 @@
 @use "../../styles/variables.scss" as *;
 
 // set the space on the left for the text
-$left-margin-content: 55px;
+$left-margin-content: 3.5rem;
 .layout {
     display: flex;
 }
 
 .sidebar {
-    width: 307px;
+    width: 19.188em;
     background-color: $white;
-    box-shadow: 4px 0 24px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0.25em 0 1.5em 0 rgba(0, 0, 0, 0.05);
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 42px 32px 0 32px;
-}
-
-.footer {
-    position: relative;
-    width: 100%;
-    padding-top: 55px;
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin-left: $left-margin-content;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: $left-margin-content;
-        width: 39px;
-        height: 1px;
-        background-color: #ACACAC;
-    }
-
-    li {
-        font-size: 0.875em;
-        margin-bottom: 36px;
-    }
+    padding: 2.625em 2em 0 2em;
 }
