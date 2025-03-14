@@ -1,25 +1,30 @@
 @use "../../styles/variables.scss" as *;
+@use "../ConnectedLayout/index.module.scss" as *;
 
-.header {
+
+.logo {
+    height: 4em;
+    width: 11.5em;
+}
+
+// home style
+.headerHome {
     background-color: $main-background-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2.5em 5.625em;
-
-    &__logo {
-        height: 4em;
-        width: 11.5em;
-    }
 }
 
-// use font weight animation and &__text should have a fix size
-.navbar {
-    display: flex;
-    list-style-type: none;
-    gap: 2em;
+// use font weight animation and &__link should have a fix size
+.navbarHome {
+    ul {
+        display: flex;
+        list-style-type: none;
+        gap: 2em;
+    }
 
-    &__text {
+    &__link {
         font-size: 1.125em;
         cursor: pointer;
         position: relative;
@@ -44,4 +49,40 @@
             color: transparent;
         }
     }
-} 
+}
+
+// connected style
+.headerConnected {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 91px;
+}
+
+.navbarConnected {
+    width: 100%;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin-left: $left-margin-content;
+    }
+
+    &__link {
+        position: relative;
+        display: block;
+        width: 100%;
+        font-size: 18px;
+        font-weight: 500;
+        width: 100%;
+        border-radius: 5px;
+        padding: 20px 0 20px $left-margin-content;
+        margin-bottom: 40px;
+        margin-left: -$left-margin-content;
+
+        &_selected {
+            background-color: #EDEDED;
+        }
+    }
+}
