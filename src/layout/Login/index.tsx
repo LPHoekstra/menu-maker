@@ -66,7 +66,7 @@ function Login(): ReactElement {
                                 <Loaders />
                             </>
                         }
-                        <span className={m.contentWrapper__help}>Besoin d'aide ?</span>
+                        <a href="mailto:mockedEmail.contact@menu-maker-qwenta.com " className={m.contentWrapper__help}>Besoin d'aide ?</a>
                     </div>
                     :
                     <div className={`${m.iconWrapper} ${m.iconWrapper_success}`}>

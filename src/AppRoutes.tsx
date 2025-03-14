@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./layout/Login";
 import Dashboard from "./pages/Dashboard";
 import ConnectedLayout from "./layout/ConnectedLayout";
+import Menus from "./pages/Menus";
 
 function AppRoutes(): ReactElement {
     return (
@@ -11,8 +12,9 @@ function AppRoutes(): ReactElement {
             <Route path="" element={<Home />}>
                 <Route path="login" element={<Login />} />
             </Route>
-            <Route path="dashboard" element={<ConnectedLayout />}>
-                <Route index element={<Dashboard />} />
+            <Route element={<ConnectedLayout />}>
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="menus" element={<Menus />} />
             </Route>
         </Routes>
     )

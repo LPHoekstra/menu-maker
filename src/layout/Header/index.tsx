@@ -11,7 +11,9 @@ function Header(): ReactElement {
 
     return (
         <header className={pathname === "" ? m.headerHome : m.headerConnected}>
-            <img src={logo} alt="Menu Maker by Qwenta" className={m.logo} />
+            <Link to="">
+                <img src={logo} alt="Menu Maker by Qwenta" className={m.logo} />
+            </Link>
             <nav className={pathname === "" ? m.navbarHome : m.navbarConnected}>
                 <ul>
                     {navbarContent.map(list => (
@@ -48,7 +50,7 @@ const navbarConnectedContent: Array<navbarConnectedContent> = [
         content: "Dashboard"
     },
     {
-        to: "",
+        to: "menus",
         content: "Mes menus"
     },
     {

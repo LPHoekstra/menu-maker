@@ -12,7 +12,7 @@ function Dashboard(): ReactElement {
         <main className={m.main}>
             <div className={m.dashboardHeader}>
                 <div className={m.dashboardHeader__imgWrapper}>
-                    <img src={mockImg} alt="" />
+                    <img src={mockImg} alt="mocked img" />
                 </div>
                 <h1 className={m.dashboardHeader__title}>Bienvenue, <br />
                     "connected user mock"
