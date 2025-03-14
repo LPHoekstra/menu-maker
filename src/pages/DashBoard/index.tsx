@@ -7,7 +7,7 @@ import firstImgCard from "../../assets/dashboard/realize-your-support-by-a-desig
 import secondeImgCard from "../../assets/dashboard/advice-for-a-menu.png";
 import thirdImgCard from "../../assets/dashboard/how-to-post-on-insta.png";
 
-function DashBoard(): ReactElement {
+function Dashboard(): ReactElement {
     return (
         <main className={m.main}>
             <div className={m.dashboardHeader}>
@@ -35,4 +35,4 @@ function DashBoard(): ReactElement {
     )
 }
 
-export default DashBoard
+export default Dashboard
