@@ -7,6 +7,7 @@ import check from "../../assets/check.svg";
 import Button from "../../components/Button";
 import { Link, NavigateFunction, useNavigate } from "react-router";
 import Loaders from "../../components/Loaders";
+import apiUser from "../../api/apiUser";
 
 function Login(): ReactElement {
     const navigate: NavigateFunction = useNavigate()
@@ -18,7 +19,7 @@ function Login(): ReactElement {
         navigate("/")
     }
 
-    const formHandler: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
+    const formHandler: FormEventHandler<HTMLFormElement> = async (e: FormEvent) => {
         e.preventDefault()
         const form = e.target as HTMLFormElement
         const emailInput = form.elements.namedItem("email") as HTMLInputElement
@@ -29,13 +30,28 @@ function Login(): ReactElement {
             return
         }
 
-        setIsEmailSent(true)
+        const jsonEmail = JSON.stringify(emailInput.value)
+
+        try {
+            apiUser.login(jsonEmail)
+
+            setIsEmailSent(true)
+        } catch (e) {
+            console.error(e)
+            // an error msg must be used instead of a static message
+            setError("error")
+        }
 
         // check if the token is added in cookie
         // then redirect to the dashboard
-        setIsEmailConfirmed(true)
+
+        // simulate a token
+        if (localStorage.getItem("token")) {
+            setIsEmailConfirmed(true)
+        }
     }
 
+    // refactor for a better read ?
     return (
         <aside className={m.aside} onMouseDown={closeLogin}>
             <div className={m.loginWrapper} onMouseDown={(e) => e.stopPropagation()}>

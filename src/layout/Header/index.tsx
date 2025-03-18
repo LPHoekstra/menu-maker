@@ -3,9 +3,14 @@ import logo from "../../assets/logo.png";
 import m from "./index.module.scss";
 import { Link, useLocation } from "react-router";
 
+// refactor the content selection and class selection
 function Header(): ReactElement {
     const location = useLocation()
-    const pathname: string = location.pathname.split("/")[1]
+    let pathname: string = location.pathname.split("/")[1]
+
+    if (pathname === "login") {
+        pathname = ""
+    }
 
     const navbarContent = pathname === "" ? navbarHomeContent : navbarConnectedContent
 
@@ -18,15 +23,19 @@ function Header(): ReactElement {
                 <ul>
                     {navbarContent.map(list => (
                         <li key={list.content}>
-                            <Link to={list.to} className={
-                                pathname === "" ?
-                                    m.navbarHome__link
-                                    :
-                                    `${m.navbarConnected__link} ${pathname === list.to
-                                        ? m.navbarConnected__link_selected : ""
-                                    }`
-                            }
-                                data-text={list.content}>
+                            <Link to={list.to}
+                                className={
+                                    pathname === "" ?
+                                        m.navbarHome__link
+                                        :
+                                        `${m.navbarConnected__link} ${pathname === list.to ?
+                                            m.navbarConnected__link_selected
+                                            :
+                                            ""
+                                        }`
+                                }
+                                data-text={list.content}
+                            >
                                 {list.content}
                             </Link>
                         </li>

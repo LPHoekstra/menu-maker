@@ -9,10 +9,10 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/login:
+  /auth/login:
     post:
       tags:
-        - User Module
+        - Auth Module
       summary: Login
       description: API for Login
       parameters:
