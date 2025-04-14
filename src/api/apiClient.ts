@@ -50,7 +50,7 @@ interface RequestOptions {
 }
 
 interface ApiResponse {
-    status: number
+    httpStatus: number
     message: string
     data: object
 }

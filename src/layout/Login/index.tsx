@@ -33,9 +33,11 @@ function Login(): ReactElement {
         const jsonEmail = JSON.stringify(emailInput.value)
 
         try {
-            apiUser.login(jsonEmail)
+            const response = await apiUser.login(jsonEmail)
 
-            setIsEmailSent(true)
+            if (response.httpStatus === 200) {
+                setIsEmailSent(true)
+            }
         } catch (e) {
             console.error(e)
             // an error msg must be used instead of a static message
