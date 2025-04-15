@@ -1,3 +1,4 @@
+import { ApiResponse, RequestOptions } from "../@types/api"
 
 const url = "http://localhost:3001/api/v1"
 
@@ -7,7 +8,7 @@ const url = "http://localhost:3001/api/v1"
  * @param param1 object with optionnal method (default "GET"), body (null by default), and headers (with "Content-Type": "application/json" by default)
  * @returns return the response of the API with ApiResponse pattern
  */
-const apiClient = async (endpoints: string, { method = "GET", body, headers }: RequestOptions): Promise<ApiResponse> => {
+const apiClient = async (endpoints: string, { method = "GET", body, headers, credentials }: RequestOptions): Promise<ApiResponse> => {
 
     const config: RequestOptions = {
         method,
@@ -17,9 +18,8 @@ const apiClient = async (endpoints: string, { method = "GET", body, headers }: R
         }
     }
 
-    if (body) {
-        config.body = body
-    }
+    if (body) config.body = body
+    if (credentials) config.credentials = credentials
 
     try {
         const response = await fetch(url + endpoints, config)
@@ -42,15 +42,3 @@ const apiClient = async (endpoints: string, { method = "GET", body, headers }: R
 }
 
 export default apiClient
-
-interface RequestOptions {
-    method?: "GET" | "POST" | "DELETE"
-    body?: BodyInit
-    headers?: HeadersInit
-}
-
-interface ApiResponse {
-    httpStatus: number
-    message: string
-    data: object
-}

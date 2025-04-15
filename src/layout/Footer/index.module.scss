@@ -11,6 +11,11 @@
 
     li {
         font-size: 0.875em;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 // home style
