@@ -3,16 +3,7 @@ import { Navigate, Outlet } from "react-router";
 import m from "./index.module.scss";
 import Header from "../Header";
 import Footer from "../Footer";
-
-function getCookie(name: string): string | undefined {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
-    if (parts.length === 2) {
-        const lastParts = parts.pop()
-        if (lastParts) return lastParts.split(";").shift()
-    }
-    return undefined
-}
+import { getCookie } from "../../utils/function";
 
 function ConnectedLayout(): ReactElement {
     const [isConnected, setIsConnected] = useState<boolean>(false)

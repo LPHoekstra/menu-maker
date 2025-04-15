@@ -13,6 +13,12 @@ const apiUser = {
             method: "POST",
             body: data
         })
+    },
+
+    logout: async () => {
+        return await apiClient("/auth/logout", {
+            method: "DELETE"
+        })
     }
 }
 
