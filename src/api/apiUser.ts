@@ -19,7 +19,7 @@ const apiUser = {
     logout: async (): Promise<ApiResponse> => {
         return await apiClient("/auth/logout", {
             method: "DELETE",
-            credentials: "include" // should be same-origin
+            credentials: "include"
         })
     }
 }

@@ -10,11 +10,11 @@ function Footer(): ReactElement {
 
     const handleDisconnection = async (): Promise<void> => {
         try {
-            const response = await apiUser.logout()
-
-            if (response.httpStatus === 301) navigate("/")
+            await apiUser.logout()
         } catch (error) {
             console.log(error)
+        } finally {
+            navigate("/")
         }
     }
 

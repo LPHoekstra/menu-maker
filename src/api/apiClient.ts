@@ -31,6 +31,8 @@ const apiClient = async (endpoints: string, { method = "GET", body, headers, cre
             if (response.status === 400) {
                 throw new Error("Champs invalide")
             }
+
+            throw new Error("Erreur")
         }
 
         return await response.json()
