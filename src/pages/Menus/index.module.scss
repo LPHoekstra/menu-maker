@@ -1,0 +1,55 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/placeholder.scss" as *;
+
+.main {
+    background-color: $main-background-color;
+    padding: 180px 110px;
+
+    &__title {
+        font-size: 33px;
+    }
+}
+
+.cardWrapper {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+}
+
+.linkWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F0F0F0;
+    border: #ACACAC solid 1px;
+    z-index: 1;
+    @extend %menuCardSize;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #afafaf;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+        z-index: -1;
+    }
+
+    &:hover {
+        &::after {
+            opacity: 0.6;
+        }
+    }
+
+    &__cross {
+        font-weight: 700;
+        font-size: 0.875em;
+    }
+
+    &__text {
+        font-size: 0.875em;
+    }
+}

@@ -1,7 +1,7 @@
 import { ApiResponse } from "../@types/api"
 import apiClient from "./apiClient"
 /**
- * throw an error if some thing goes wrong
+ * throw an error if something goes wrong
  */
 const apiUser = {
     /**

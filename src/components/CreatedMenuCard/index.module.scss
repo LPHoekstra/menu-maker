@@ -1,0 +1,27 @@
+@use "../../styles/placeholder.scss" as *;
+
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__img {
+        @extend %menuCardSize
+    }
+
+    &__creationDate {
+        font-size: 0.75em;
+        color: #374151;
+    }
+
+    &__btn {
+        width: 100%;
+        padding-top: 13px;
+        padding-bottom: 13px;
+    }
+
+    &__delete {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

@@ -20,7 +20,27 @@ function Login(): ReactElement {
         navigate("/")
     }
 
-    const formHandler: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
+    const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+            const isConnectedCookie: string | undefined = getCookie("isConnected")
+            if (isConnectedCookie) {
+                setIsEmailConfirmed(true)
+
+                const timeout = setTimeout(() => {
+                    navigate("/dashboard")
+
+                    document.removeEventListener("visibilitychange", handleVisibilityChange)
+                }, 1000)
+
+                return () => {
+                    clearTimeout(timeout)
+                    document.removeEventListener("visibilitychange", handleVisibilityChange)
+                }
+            }
+        }
+    }
+
+    const formHandler: FormEventHandler<HTMLFormElement> = async (e: FormEvent) => {
         e.preventDefault()
         const form = e.target as HTMLFormElement
         const emailInput = form.elements.namedItem("email") as HTMLInputElement
@@ -34,21 +54,12 @@ function Login(): ReactElement {
         const jsonEmail = JSON.stringify(emailInput.value)
 
         try {
-            apiUser.login(jsonEmail)
-
             setIsEmailSent(true)
 
-            document.addEventListener("visibilitychange", () => {
-                if (document.visibilityState === "visible") {
-                    const isConnectedCookie: string | undefined = getCookie("isConnected")
-                    if (isConnectedCookie) {
-                        setIsEmailConfirmed(true)
-                        setTimeout(() => {
-                            navigate("/dashboard")
-                        }, 1000)
-                    }
-                }
-            })
+            await apiUser.login(jsonEmail)
+
+            // check every 5 sec if cookie are here ?
+            document.addEventListener("visibilitychange", handleVisibilityChange)
         } catch (e: unknown) {
             if (e instanceof Error) {
                 console.error(e.message)

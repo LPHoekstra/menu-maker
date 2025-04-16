@@ -5,6 +5,7 @@ import Login from "./layout/Login";
 import Dashboard from "./pages/Dashboard";
 import ConnectedLayout from "./layout/ConnectedLayout";
 import Menus from "./pages/Menus";
+import MenusCreation from "./pages/MenusCreation";
 
 function AppRoutes(): ReactElement {
     return (
@@ -15,6 +16,8 @@ function AppRoutes(): ReactElement {
             <Route element={<ConnectedLayout />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="menus" element={<Menus />} />
+                <Route path="menus/nouveau-menu" element={<MenusCreation />} />
+                <Route path="menus/:id" element={<MenusCreation />} />
             </Route>
         </Routes>
     )
