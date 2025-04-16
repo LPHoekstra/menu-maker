@@ -10,6 +10,10 @@ export interface CreatedMenuCardProps {
 }
 
 function CreatedMenuCard({ id, creationDate, imgLink }: CreatedMenuCardProps): ReactElement {
+    const handleDelete = () => {
+        console.log("delete from api")
+    }
+
     return (
         <article className={m.mainWrapper}>
             <Link to={id}>
@@ -19,7 +23,7 @@ function CreatedMenuCard({ id, creationDate, imgLink }: CreatedMenuCardProps): R
             <Link to={id}>
                 <Button content="Modifier" type="full" additionnalClass={m.mainWrapper__btn} />
             </Link>
-            <span className={m.mainWrapper__delete}>Supprimer</span>
+            <span className={m.mainWrapper__delete} onClick={handleDelete}>Supprimer</span>
         </article>
     )
 }

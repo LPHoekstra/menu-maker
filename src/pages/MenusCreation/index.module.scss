@@ -1,0 +1,46 @@
+@use "../../styles/variables.scss" as *;
+
+.main {
+    display: flex;
+}
+
+.createMenuSection {
+    background-color: $main-background-color;
+    width: 100%;
+    padding: 100px;
+
+    &__para {
+        margin-top: 25px;
+        margin-bottom: 54px;
+    }
+}
+
+.insertWrapper {
+    margin-bottom: 1em;
+    list-style-type: none;
+    padding-left: 0;
+    
+    &__liItem {
+        background-color: #fff;
+        padding: 38px 54px 45px 60px;
+        margin-bottom: 1px;
+        
+        &_top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    }
+
+    &__title {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    &__addCategory {
+        display: block;
+        padding: 20px 45px;
+        background-color: #F0F0F0;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
