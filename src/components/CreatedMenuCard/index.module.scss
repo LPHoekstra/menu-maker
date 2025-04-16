@@ -3,7 +3,7 @@
 .mainWrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1em;
 
     &__img {
         @extend %menuCardSize
@@ -16,8 +16,8 @@
 
     &__btn {
         width: 100%;
-        padding-top: 13px;
-        padding-bottom: 13px;
+        padding-top: 0.813rem;
+        padding-bottom: 0.813rem;
     }
 
     &__delete {

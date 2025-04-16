@@ -12,7 +12,7 @@ const listOfMenusMock: Array<CreatedMenuCardProps> = [
 function Menus(): ReactElement {
     return (
         <main className={m.main}>
-            <h1 className={m.main__title}>Mes menus</h1>
+            <h1>Mes menus</h1>
             <section className={m.cardWrapper}>
                 {listOfMenusMock.map(({ id, creationDate, imgLink }) => (
                     <CreatedMenuCard key={id} id={id} creationDate={creationDate} imgLink={imgLink} />
