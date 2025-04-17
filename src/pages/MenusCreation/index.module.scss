@@ -22,7 +22,6 @@
     
     &__liItem {
         background-color: #fff;
-        padding: 38px 54px 45px 60px;
         margin-bottom: 1px;
         
         &_top {
@@ -30,17 +29,53 @@
             border-top-right-radius: 10px;
         }
     }
+}
+
+.headingWrapper {
+    padding: 33px 54px 33px 60px;
+    position: relative;
+    cursor: pointer;
+
+    &__number {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 0.875em;
+        width: 22px;
+        height: 22px;
+        left: 28px;
+    }
 
     &__title {
         font-size: 1rem;
         font-weight: 500;
     }
+}
 
+.accordionsWrapper {
+    height: 0;
+    overflow: hidden;
+    transition: height 200ms ease-in-out;
+    padding-left: 60px;
+    padding-right: 54px;
+    
+    &_active {
+        height: 100px;
+    }
+    
     &__addCategory {
         display: block;
-        padding: 20px 45px;
+        padding: 20px;
         background-color: #F0F0F0;
         border-radius: 4px;
         cursor: pointer;
+    }
+
+    &__addCross {
+        margin-right: 20px;
     }
 }
