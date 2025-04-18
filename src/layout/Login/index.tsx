@@ -9,6 +9,7 @@ import { Link, NavigateFunction, useNavigate } from "react-router";
 import Loaders from "../../components/Loaders";
 import apiUser from "../../api/apiUser";
 import { getCookie } from "../../utils/function";
+import Modal from "../../components/Modal";
 
 function Login(): ReactElement {
     const navigate: NavigateFunction = useNavigate()
@@ -72,7 +73,7 @@ function Login(): ReactElement {
 
     // refactor for a better read ?
     return (
-        <aside className={m.aside} onMouseDown={closeLogin}>
+        <Modal onMouseDown={closeLogin}>
             <div className={m.loginWrapper} onMouseDown={(e) => e.stopPropagation()}>
                 <Link to="/">
                     <img src={close} alt="" className={m.loginWrapper__close} />
@@ -109,7 +110,7 @@ function Login(): ReactElement {
                     </div>
                 }
             </div>
-        </aside>
+        </Modal>
     )
 }
 

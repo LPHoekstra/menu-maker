@@ -1,13 +1,14 @@
-import { ReactElement } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 import m from "./index.module.scss";
 
 interface ModalProps {
+    onMouseDown: MouseEventHandler<HTMLDivElement>
     children: ReactElement
 }
 
-function Modal({ children }: ModalProps): ReactElement {
+function Modal({ onMouseDown, children }: ModalProps): ReactElement {
     return (
-        <aside className={m.aside}>
+        <aside className={m.aside} onMouseDown={onMouseDown}>
             {children}
         </aside>
     )
