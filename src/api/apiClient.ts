@@ -8,7 +8,9 @@ const url = "http://localhost:3001/api/v1"
  * @param param1 object with optionnal method (default "GET"), body (null by default), and headers (with "Content-Type": "application/json" by default)
  * @returns return the response of the API with ApiResponse pattern
  */
-const apiClient = async (endpoints: string, { method = "GET", body, headers, credentials }: RequestOptions): Promise<ApiResponse> => {
+const apiClient = async <T>(endpoints: string,
+    { method = "GET", body, headers, credentials }: RequestOptions
+): Promise<ApiResponse<T>> => {
 
     const config: RequestOptions = {
         method,

@@ -1,12 +1,24 @@
 export interface RequestOptions {
-    method?: "GET" | "POST" | "DELETE"
+    method?: "GET" | "POST" | "PUT" | "DELETE"
     body?: BodyInit
     credentials?: RequestCredentials
     headers?: HeadersInit
 }
 
-export interface ApiResponse {
+export interface ApiResponse<T> {
     httpStatus: number
     message: string
-    data: object
+    data: T
+}
+
+export interface UserMenus {
+    id: Int16Array
+    imgLink: string
+    creationDate: string
+}
+
+// data need to be define
+export interface MenuData {
+    toDefine: string
+    toDefine2: string
 }
