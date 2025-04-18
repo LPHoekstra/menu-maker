@@ -36,6 +36,10 @@ function MenusCreation() {
                                 <h3 className={m.headingWrapper__title}>Ajoutez vos plats</h3>
                             </div>
                             <div className={`${m.accordionsWrapper} ${isDishesAccordionsActive ? m.accordionsWrapper_active : ""}`}>
+                                <Link to="ajouter-un-plat" className={m.accordionsWrapper__addCategory}>
+                                    <img src={addCross} className={m.accordionsWrapper__addCross} />
+                                    Plats (ex. : pâtes, gryros, coca...)
+                                </Link>
                                 <Link to="ajouter-une-categorie" className={m.accordionsWrapper__addCategory}>
                                     <img src={addCross} className={m.accordionsWrapper__addCross} />
                                     Catégorie (ex. : entrées, plats...)

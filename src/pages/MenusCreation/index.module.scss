@@ -64,7 +64,7 @@
     padding-right: 54px;
     
     &_active {
-        height: 100px;
+        height: 200px;
     }
     
     &__addCategory {
@@ -73,6 +73,7 @@
         background-color: #F0F0F0;
         border-radius: 4px;
         cursor: pointer;
+        margin-top: 15px;
     }
 
     &__addCross {

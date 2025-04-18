@@ -8,6 +8,7 @@ import Menus from "./pages/Menus";
 import MenusCreation from "./pages/MenusCreation";
 import AddCategorie from "./pages/AddCategorie";
 import MenuEdit from "./components/MenuEdit";
+import MenusAddDishe from "./pages/MenusAddDishe";
 
 function AppRoutes(): ReactElement {
     return (
@@ -21,6 +22,7 @@ function AppRoutes(): ReactElement {
                 <Route path="menus" element={<Menus />} />
                 <Route path="menus/edition-de-menu" element={<MenusCreation />}>
                     <Route path="ajouter-une-categorie" element={<AddCategorie />} />
+                    <Route path="ajouter-un-plat" element={<MenusAddDishe />} />
                     <Route path=":id" element={<MenuEdit />} />
                 </Route>
             </Route>
