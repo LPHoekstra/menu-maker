@@ -37,7 +37,7 @@ function Menus(): ReactElement {
                     <CreatedMenuCard key={id} id={id} creationDate={creationDate} imgLink={imgLink} />
                 ))}
                 <article>
-                    <Link to="nouveau-menu" className={m.linkWrapper}>
+                    <Link to="edition-de-menu" className={m.linkWrapper}>
                         <span className={m.linkWrapper__cross}>+</span>
                         <p className={m.linkWrapper__text}>Ajouter un menu</p>
                     </Link>

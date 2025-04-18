@@ -7,6 +7,7 @@ import ConnectedLayout from "./layout/ConnectedLayout";
 import Menus from "./pages/Menus";
 import MenusCreation from "./pages/MenusCreation";
 import AddCategorie from "./pages/AddCategorie";
+import MenuEdit from "./components/MenuEdit";
 
 function AppRoutes(): ReactElement {
     return (
@@ -14,13 +15,14 @@ function AppRoutes(): ReactElement {
             <Route path="" element={<Home />}>
                 <Route path="login" element={<Login />} />
             </Route>
+            {/* connected route */}
             <Route element={<ConnectedLayout />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="menus" element={<Menus />} />
-                <Route path="menus/nouveau-menu" element={<MenusCreation />}>
+                <Route path="menus/edition-de-menu" element={<MenusCreation />}>
                     <Route path="ajouter-une-categorie" element={<AddCategorie />} />
+                    <Route path=":id" element={<MenuEdit />} />
                 </Route>
-                <Route path="menus/modification-menu/:id" element={<MenusCreation />} />
             </Route>
         </Routes>
     )

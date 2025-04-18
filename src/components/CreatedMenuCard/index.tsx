@@ -22,11 +22,11 @@ function CreatedMenuCard({ id, creationDate, imgLink }: UserMenus): ReactElement
 
     return (
         <article className={m.mainWrapper} ref={ref}>
-            <Link to={id}>
+            <Link to={`edition-de-menu/${id}`}>
                 <img src={imgLink} alt="" className={m.mainWrapper__img} />
             </Link>
             <p className={m.mainWrapper__creationDate}>Créé le {creationDate}</p>
-            <Link to={id}>
+            <Link to={`edition-de-menu/${id}`}>
                 <Button content="Modifier" type="full" additionnalClass={m.mainWrapper__btn} />
             </Link>
             <span className={m.mainWrapper__delete} onClick={handleDelete}>Supprimer</span>

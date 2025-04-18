@@ -1,7 +1,7 @@
 import m from "./index.module.scss"
 import MenuVisualisation from "../../components/MenuVisualisation"
 import Button from "../../components/Button"
-import { Link } from "react-router"
+import { Link, Outlet } from "react-router"
 import { useState } from "react"
 import addCross from "../../assets/add-cross.svg"
 
@@ -24,6 +24,7 @@ function MenusCreation() {
 
     return (
         <main className={m.main}>
+            <Outlet />
             <section className={m.createMenuSection}>
                 <h1>Créer un menu</h1>
                 <p className={m.createMenuSection__para}>Laissez-vous guider étape par étape dans la création de votre menu, vous pourrez le sauvegarder pour reprendre la création plus tard !</p>
