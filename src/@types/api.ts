@@ -12,7 +12,7 @@ export interface ApiResponse<T> {
 }
 
 export interface UserMenus {
-    id: Int16Array
+    id: string
     imgLink: string
     creationDate: string
 }

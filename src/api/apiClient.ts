@@ -27,11 +27,17 @@ const apiClient = async <T>(endpoints: string,
         const response = await fetch(url + endpoints, config)
 
         if (!response.ok) {
-            if (response.status === 500) {
-                throw new Error("Erreur serveur")
-            }
             if (response.status === 400) {
                 throw new Error("Champs invalide")
+            }
+            if (response.status === 401) {
+                throw new Error("Accès non autorisé")
+            }
+            if (response.status === 404) {
+                throw new Error("Ressource introuvable")
+            }
+            if (response.status === 500) {
+                throw new Error("Erreur serveur")
             }
 
             throw new Error("Erreur")

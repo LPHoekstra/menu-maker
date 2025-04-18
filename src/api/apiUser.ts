@@ -23,6 +23,10 @@ const apiUser = {
         })
     },
 
+    /**
+     * Get all menus created by the connected user
+     * @returns An array of UserMenus
+     */
     getUserMenus: async (): Promise<ApiResponse<Array<UserMenus>>> => {
         return await apiClient("/menus/userMenus", {
             method: "GET",
@@ -30,6 +34,11 @@ const apiUser = {
         })
     },
 
+    /**
+     * Create a new menu with the data entered by the user
+     * @param data 
+     * @returns 
+     */
     createMenu: async (data: MenuData): Promise<ApiResponse<null>> => {
         return await apiClient("/menus/createMenu", {
             method: "POST",
@@ -38,6 +47,11 @@ const apiUser = {
         })
     },
 
+    /**
+     * Get a specified menu from the connected user with the id
+     * @param id of the menu to get
+     * @returns 
+     */
     getMenu: async (id: string): Promise<ApiResponse<MenuData>> => {
         return await apiClient(`/menus/${id}`, {
             method: "GET",
@@ -45,6 +59,12 @@ const apiUser = {
         })
     },
 
+    /**
+     * Update a specified menu from the connected user with the id
+     * @param id of the menu to update
+     * @param data
+     * @returns 
+     */
     putMenu: async (id: string, data: MenuData): Promise<ApiResponse<null>> => {
         return await apiClient(`/menus/${id}`, {
             method: "PUT",
@@ -53,6 +73,11 @@ const apiUser = {
         })
     },
 
+    /**
+     * Delete a specified menu from the connected user with the id
+     * @param id of the menu to delete
+     * @returns 
+     */
     deleteMenu: async (id: string): Promise<ApiResponse<null>> => {
         return await apiClient(`/menus/${id}`, {
             method: "DELETE",
