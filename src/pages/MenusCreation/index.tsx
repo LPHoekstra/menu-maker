@@ -13,8 +13,6 @@ function MenusCreation() {
     const [isExportAccordionsActive, setIsExportAccordionsActive] = useState<boolean>(false)
     const { menuData } = useMenuData()
 
-    console.log(menuData)
-
     const handleOpenAccordionsDishes = () => {
         setDishesIsAccordionsActive(!isDishesAccordionsActive)
     }

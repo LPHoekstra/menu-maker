@@ -5,6 +5,7 @@ import Button from "../../components/Button"
 import m from "./index.module.scss"
 import { FormEvent, FormEventHandler } from "react"
 import { useMenuData } from "../../hooks/menuData"
+import { MenuData } from "../../@types/menu"
 
 function AddCategorie() {
     const navigate = useNavigate()
@@ -19,8 +20,11 @@ function AddCategorie() {
         const form = e.target as HTMLFormElement
         const input = form.elements.namedItem("addCategorie") as HTMLInputElement
 
-        menuData[input.value] = []
-        setMenuData(menuData)
+        const newCategory: MenuData = {
+            [input.value]: []
+        }
+
+        setMenuData({ ...menuData, ...newCategory })
 
         navigate("/menus/edition-de-menu")
     }
