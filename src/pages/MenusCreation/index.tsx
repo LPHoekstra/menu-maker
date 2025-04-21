@@ -1,14 +1,19 @@
 import m from "./index.module.scss"
 import MenuVisualisation from "../../components/MenuVisualisation"
 import Button from "../../components/Button"
-import { Link, Outlet } from "react-router"
+import { Outlet } from "react-router"
 import { useState } from "react"
-import addCross from "../../assets/add-cross.svg"
+import { useMenuData } from "../../hooks/menuData"
+import MenuCreatedCategory from "../../components/MenuCreatedCategory"
+import MenuLinkAdd from "../../components/MenuLinkAdd"
 
 function MenusCreation() {
     const [isDishesAccordionsActive, setDishesIsAccordionsActive] = useState<boolean>(false)
     const [isCustomizationAccordionsActive, setIsCustomizationAccordionsActive] = useState<boolean>(false)
     const [isExportAccordionsActive, setIsExportAccordionsActive] = useState<boolean>(false)
+    const { menuData } = useMenuData()
+
+    console.log(menuData)
 
     const handleOpenAccordionsDishes = () => {
         setDishesIsAccordionsActive(!isDishesAccordionsActive)
@@ -36,14 +41,10 @@ function MenusCreation() {
                                 <h3 className={m.headingWrapper__title}>Ajoutez vos plats</h3>
                             </div>
                             <div className={`${m.accordionsWrapper} ${isDishesAccordionsActive ? m.accordionsWrapper_active : ""}`}>
-                                <Link to="ajouter-un-plat" className={m.accordionsWrapper__addCategory}>
-                                    <img src={addCross} className={m.accordionsWrapper__addCross} />
-                                    Plats (ex. : pâtes, gryros, coca...)
-                                </Link>
-                                <Link to="ajouter-une-categorie" className={m.accordionsWrapper__addCategory}>
-                                    <img src={addCross} className={m.accordionsWrapper__addCross} />
-                                    Catégorie (ex. : entrées, plats...)
-                                </Link>
+                                {Object.keys(menuData).map((menuName) => (
+                                    <MenuCreatedCategory key={menuName} menuName={menuName} />
+                                ))}
+                                <MenuLinkAdd to="ajouter-une-categorie" content="Catégorie (ex. : entrées, plats...)" />
                             </div>
                         </li>
                         <li className={m.insertWrapper__liItem}>

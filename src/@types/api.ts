@@ -16,9 +16,3 @@ export interface UserMenus {
     imgLink: string
     creationDate: string
 }
-
-// data need to be define
-export interface MenuData {
-    toDefine: string
-    toDefine2: string
-}

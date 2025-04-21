@@ -58,25 +58,12 @@
 
 .accordionsWrapper {
     height: 0;
-    overflow: hidden;
+    overflow: auto;
     transition: height 200ms ease-in-out;
     padding-left: 60px;
     padding-right: 54px;
     
     &_active {
         height: 200px;
-    }
-    
-    &__addCategory {
-        display: block;
-        padding: 20px;
-        background-color: #F0F0F0;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 15px;
-    }
-
-    &__addCross {
-        margin-right: 20px;
     }
 }

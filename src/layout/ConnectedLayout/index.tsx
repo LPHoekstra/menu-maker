@@ -4,6 +4,7 @@ import m from "./index.module.scss";
 import Header from "../Header";
 import Footer from "../Footer";
 import { getCookie } from "../../utils/function";
+import { MenuDataProvider } from "../../context/menuData";
 
 function ConnectedLayout(): ReactElement {
     const [isConnected, setIsConnected] = useState<boolean>(false)
@@ -19,7 +20,9 @@ function ConnectedLayout(): ReactElement {
                 <Header />
                 <Footer />
             </aside>
-            <Outlet />
+            <MenuDataProvider>
+                <Outlet />
+            </MenuDataProvider>
         </div>
     )
         :

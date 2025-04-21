@@ -1,0 +1,16 @@
+.addedCategoriesWrapper {
+    margin-top: 15px;
+    
+    &__titleWrapper {
+        display: flex;
+        gap: 12px;
+    }
+
+    &__modification {
+        cursor: pointer;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

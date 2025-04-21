@@ -3,20 +3,24 @@ import Modal from "../../components/Modal"
 import close from "../../assets/close.svg"
 import Button from "../../components/Button"
 import m from "./index.module.scss"
-import { FormEvent } from "react"
+import { FormEvent, FormEventHandler } from "react"
+import { useMenuData } from "../../hooks/menuData"
 
 function AddCategorie() {
     const navigate = useNavigate()
+    const { menuData, setMenuData } = useMenuData()
 
     const closeModal = () => {
         navigate("/menus/edition-de-menu")
     }
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
         e.preventDefault()
+        const form = e.target as HTMLFormElement
+        const input = form.elements.namedItem("addCategorie") as HTMLInputElement
 
-        // send data to context
-        console.log("catégorie ajouté")
+        menuData[input.value] = []
+        setMenuData(menuData)
 
         navigate("/menus/edition-de-menu")
     }

@@ -1,4 +1,5 @@
-import { ApiResponse, MenuData, UserMenus } from "../@types/api"
+import { ApiResponse, UserMenus } from "../@types/api"
+import { MenuData } from "../@types/menu"
 import apiClient from "./apiClient"
 /**
  * throw an error if something goes wrong
