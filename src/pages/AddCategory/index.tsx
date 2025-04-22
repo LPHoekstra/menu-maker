@@ -7,7 +7,7 @@ import { FormEvent, FormEventHandler, useMemo } from "react"
 import { useMenuData } from "../../hooks/menuData"
 import { MenuData } from "../../@types/menu"
 
-function AddCategorie() {
+function AddCategory() {
     const navigate = useNavigate()
     const param = useParams()
     const { menuData, setMenuData } = useMenuData()
@@ -60,4 +60,4 @@ function AddCategorie() {
     )
 }
 
-export default AddCategorie
+export default AddCategory
