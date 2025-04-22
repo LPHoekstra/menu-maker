@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
-import Login from "./layout/Login";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ConnectedLayout from "./layout/ConnectedLayout";
 import Menus from "./pages/Menus";
