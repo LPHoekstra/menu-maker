@@ -1,8 +1,9 @@
-.addedCategoriesWrapper {
+.mainWrapper {
     margin-top: 15px;
     
     &__titleWrapper {
         display: flex;
+        align-items: center;
         gap: 12px;
     }
 
@@ -12,5 +13,11 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+
+    &__close {
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
     }
 }
