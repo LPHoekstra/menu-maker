@@ -3,11 +3,13 @@ import Modal from "../../components/Modal"
 import m from "./index.module.scss"
 import { FormEvent } from "react"
 import close from "../../assets/close-dark.svg"
+import addPhoto from "../../assets/add-photo.svg"
 import Button from "../../components/Button"
 
 function MenusAddDishe() {
     const navigate = useNavigate()
     const param = useParams()
+    // implement img visualisation of the uploaded photo
 
     const closeModal = () => {
         navigate("/menus/edition-de-menu")
@@ -27,7 +29,12 @@ function MenusAddDishe() {
                 <h2 className={m.mainWrapper__title}>Ajoutez vos : {param.categoryName}</h2>
                 <div className={m.formWrapper}>
                     <h3 className={m.formWrapper__title}>Plat 1</h3>
-                    <input type="file" name="photo" id="photo" />
+                    <div className={m.addPhotoWrapper}>
+                        <img src={addPhoto} aria-hidden="true" className={m.addPhotoWrapper__img} />
+                        <label htmlFor="photo" className={m.addPhotoWrapper__label}>+Ajouter photo</label>
+                        <input type="file" name="photo" id="photo" accept="image/png, image/jpeg" className={m.addPhotoWrapper__input} />
+                        <span className={m.addPhotoWrapper__format}>max 2mo</span>
+                    </div>
                     <div className={m.nameAndPriceWrapper}>
                         <div className={m.inputLabelWrapper}>
                             <label htmlFor="name" className={m.inputLabelWrapper__label}>Nom du plat</label>

@@ -36,6 +36,39 @@
     }
 }
 
+.addPhotoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FBF0E3;
+    border-radius: 5px;
+    padding: 15px 0;
+    gap: 4px;
+
+    &__input {
+        position: absolute;
+        overflow: hidden;
+        clip-path: inset(100%);
+        width: 1px;
+        height: 1px;
+    }
+
+    &__img {
+        width: 35px;
+    }
+
+    &__label {
+        color: #4F4F4F;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    &__format {
+        color: #4F4F4F;
+        font-size: 8px;
+    }
+}
+
 .nameAndPriceWrapper {
     display: flex;
     gap: 15px;
