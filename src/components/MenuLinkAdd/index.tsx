@@ -3,12 +3,12 @@ import addCross from "../../assets/add-cross.svg"
 import m from "./index.module.scss"
 
 interface MenuLinkAddProps {
-    to: "ajouter-une-categorie" | "ajouter-un-plat"
+    to: "ajouter-une-categorie" | `ajouter-un-plat/${string}`
     content: "Catégorie (ex. : entrées, plats...)" | "Plats (ex. : pâtes, gryros, coca...)"
 }
 
 function MenuLinkAdd({ to, content }: MenuLinkAddProps) {
-    const isAddSpaceForDishe = to === "ajouter-un-plat" ? true : false
+    const isAddSpaceForDishe = to !== "ajouter-une-categorie" ? true : false
 
     return (
         <Link to={to} className={`${m.link} ${isAddSpaceForDishe ? m.link_space : ""}`}>

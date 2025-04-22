@@ -28,7 +28,7 @@ function MenuCreatedCategory({ menuName }: MenuCreatedCategoryProps) {
                 <Link to={`ajouter-une-categorie/${menuName}`} className={m.mainWrapper__modification}>modifier</Link>
                 <img src={close} alt="Supprimer le menu" className={m.mainWrapper__close} onClick={handleDelete} />
             </div>
-            <MenuLinkAdd to="ajouter-un-plat" content="Plats (ex. : pâtes, gryros, coca...)" />
+            <MenuLinkAdd to={`ajouter-un-plat/${menuName}`} content="Plats (ex. : pâtes, gryros, coca...)" />
         </div>
     )
 }
