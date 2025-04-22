@@ -7,11 +7,11 @@
 .createMenuSection {
     background-color: $main-background-color;
     width: 100%;
-    padding: 100px;
+    padding: 6.25em;
 
     &__para {
-        margin-top: 25px;
-        margin-bottom: 54px;
+        margin-top: 1.563em;
+        margin-bottom: 3.375em;
     }
 }
 
@@ -21,18 +21,18 @@
     padding-left: 0;
     
     &__liItem {
-        background-color: #fff;
+        background-color: $white;
         margin-bottom: 1px;
         
         &_top {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            border-top-left-radius: 0.625em;
+            border-top-right-radius: 0.625em;
         }
     }
 }
 
 .headingWrapper {
-    padding: 33px 54px 33px 60px;
+    padding: 2.063em 3.375em 2.063em 3.75em;
     position: relative;
     cursor: pointer;
 
@@ -43,11 +43,11 @@
         align-items: center;
         background-color: #000;
         border-radius: 50%;
-        color: #fff;
+        color: $white;
         font-size: 0.875em;
-        width: 22px;
-        height: 22px;
-        left: 28px;
+        width: 1.375em;
+        height: 1.375em;
+        left: 1.75em;
     }
 
     &__title {
@@ -60,10 +60,10 @@
     height: 0;
     overflow: auto;
     transition: height 200ms ease-in-out;
-    padding-left: 60px;
-    padding-right: 54px;
+    padding-left: 3.75em;
+    padding-right: 3.375em;
     
     &_active {
-        height: 200px;
+        height: 12.5em;
     }
 }
