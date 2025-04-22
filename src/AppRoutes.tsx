@@ -22,6 +22,7 @@ function AppRoutes(): ReactElement {
                 <Route path="menus" element={<Menus />} />
                 <Route path="menus/edition-de-menu" element={<MenusCreation />}>
                     <Route path="ajouter-une-categorie" element={<AddCategorie />} />
+                    <Route path="ajouter-une-categorie/:name" element={<AddCategorie />} />
                     <Route path="ajouter-un-plat" element={<MenusAddDishe />} />
                     <Route path=":id" element={<MenuEdit />} />
                 </Route>
