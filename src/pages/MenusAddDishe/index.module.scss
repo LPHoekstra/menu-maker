@@ -85,6 +85,8 @@
 
     &__img {
         width: 35px;
+        max-height: 167px;
+        box-sizing: border-box;
     }
 
     &__label {

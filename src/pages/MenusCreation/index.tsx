@@ -2,7 +2,7 @@ import m from "./index.module.scss"
 import MenuVisualisation from "../../components/MenuVisualisation"
 import Button from "../../components/Button"
 import { Outlet } from "react-router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMenuData } from "../../hooks/menuData"
 import MenuCreatedCategory from "../../components/MenuCreatedCategory"
 import MenuLinkAdd from "../../components/MenuLinkAdd"
@@ -11,7 +11,13 @@ function MenusCreation() {
     const [isDishesAccordionsActive, setDishesIsAccordionsActive] = useState<boolean>(false)
     const [isCustomizationAccordionsActive, setIsCustomizationAccordionsActive] = useState<boolean>(false)
     const [isExportAccordionsActive, setIsExportAccordionsActive] = useState<boolean>(false)
-    const { menuData } = useMenuData()
+    const { menuData, setMenuData } = useMenuData()
+
+    useEffect(() => {
+        const sessionMenuData = localStorage.getItem("menuData")
+
+        if (sessionMenuData) setMenuData(JSON.parse(sessionMenuData))
+    }, [setMenuData])
 
     const handleOpenAccordionsDishes = () => {
         setDishesIsAccordionsActive(!isDishesAccordionsActive)
