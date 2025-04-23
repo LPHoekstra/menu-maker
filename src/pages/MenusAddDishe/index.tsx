@@ -40,37 +40,45 @@ function MenusAddDishe() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-        const form = e.target as HTMLFormElement
-        const imgInput = form.elements.namedItem("img") as HTMLInputElement | RadioNodeList
-        const nameInput = form.elements.namedItem("name") as HTMLInputElement | RadioNodeList
-        const priceInput = form.elements.namedItem("price") as HTMLInputElement | RadioNodeList
-        const descInput = form.elements.namedItem("description") as HTMLInputElement | RadioNodeList
+        const form = e.currentTarget as HTMLFormElement
+        const formWrapper = form.querySelectorAll("." + m.formWrapper)
 
-        if (nameInput.value === ""
-            // || imgInput.value === ""
-            || priceInput.value === ""
-            || descInput.value === ""
-        ) {
-            setErrorMsg("champ invalide")
-            return
-        }
+        const newDishesArray: Array<MenuDishes> = []
 
-        const dataObject: MenuDishes = {
-            name: nameInput.value,
-            price: priceInput.value,
-            description: descInput.value,
-            img: imgInput.value
-        }
+        formWrapper.forEach((wrapper) => {
+            const imgInput = wrapper.querySelector("#img") as HTMLInputElement
+            const nameInput = wrapper.querySelector("#name") as HTMLInputElement
+            const priceInput = wrapper.querySelector("#price") as HTMLInputElement
+            const descInput = wrapper.querySelector("#description") as HTMLInputElement
+
+            if (nameInput.value === ""
+                // || imgInput.value === ""
+                || priceInput.value === ""
+                || descInput.value === ""
+            ) {
+                setErrorMsg("champ invalide")
+                return
+            }
+
+            const dataObject: MenuDishes = {
+                name: nameInput.value,
+                price: priceInput.value,
+                description: descInput.value,
+                img: imgInput.value
+            }
+
+            newDishesArray.push(dataObject)
+        })
 
         const categoryToUpdate: Array<MenuDishes> = menuData[categoryNameInPath]
 
-        // si l'objet est déjà présent ces nouvelles valeurs son remplacé
         const updatedMenuData: MenuData = {
             ...menuData,
-            [categoryNameInPath]: [...categoryToUpdate.filter((object) => object.name !== disheNameInPath), dataObject]
+            [categoryNameInPath]: [...categoryToUpdate.filter((object) => object.name !== disheNameInPath), ...newDishesArray]
         }
 
         setMenuData(updatedMenuData)
+
         navigate("/menus/edition-de-menu")
     }
 
