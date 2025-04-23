@@ -26,11 +26,15 @@ function AddCategory() {
         const form = e.target as HTMLFormElement
         const input = form.elements.namedItem("addCategorie") as HTMLInputElement
 
+        // if param.name is in path the category name is change and keep is value
+        // else create the category
         const updatedData: MenuData = param.name ?
             { [input.value]: menuData[param.name] }
             :
             { [input.value]: [] }
 
+        // if param.name is in path the category is removed from menuData
+        // else return menuData
         const filteredData: MenuData = param.name ?
             Object.fromEntries(
                 Object.entries(menuData).filter(([key]) => key !== param.name)
