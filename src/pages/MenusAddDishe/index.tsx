@@ -13,6 +13,10 @@ function MenusAddDishe() {
     const { menuData, setMenuData } = useMenuData()
     const param = useParams()
     const categoryNameInPath = param.categoryName as string // component is not render if no param
+
+    const disheNameInPath = param.disheName
+    const disheInPathObject = menuData[categoryNameInPath]?.find((dishe) => dishe.name === disheNameInPath)
+
     // implement img visualisation of the uploaded photo
 
     const closeModal = () => {
@@ -36,9 +40,10 @@ function MenusAddDishe() {
 
         const categoryToUpdate: Array<MenuDishes> = menuData[categoryNameInPath]
 
+        // si l'objet est déjà présent ces nouvelles valeurs son remplacé
         const updatedMenuData: MenuData = {
             ...menuData,
-            [categoryNameInPath]: [...categoryToUpdate, dataObject]
+            [categoryNameInPath]: [...categoryToUpdate.filter((object) => object.name !== disheNameInPath), dataObject]
         }
 
         setMenuData(updatedMenuData)
@@ -63,16 +68,16 @@ function MenusAddDishe() {
                     <div className={m.nameAndPriceWrapper}>
                         <div className={m.inputLabelWrapper}>
                             <label htmlFor="name" className={m.inputLabelWrapper__label}>Nom du plat</label>
-                            <input type="text" name="name" id="name" className={m.inputLabelWrapper__input} />
+                            <input type="text" name="name" id="name" className={m.inputLabelWrapper__input} defaultValue={disheInPathObject?.name} />
                         </div>
                         <div className={m.inputLabelWrapper}>
                             <label htmlFor="price" className={m.inputLabelWrapper__label}>Prix</label>
-                            <input type="number" name="price" id="price" className={m.inputLabelWrapper__input} />
+                            <input type="number" name="price" id="price" className={m.inputLabelWrapper__input} defaultValue={disheInPathObject?.price} />
                         </div>
                     </div>
                     <div className={m.inputLabelWrapper}>
                         <label htmlFor="description" className={m.inputLabelWrapper__label}>Description</label>
-                        <input type="text" name="description" id="description" className={m.inputLabelWrapper__input} />
+                        <input type="text" name="description" id="description" className={m.inputLabelWrapper__input} defaultValue={disheInPathObject?.description} />
                     </div>
                 </div>
                 <Button content="Valider" type="full" additionnalClass={m.mainWrapper__btn} />
