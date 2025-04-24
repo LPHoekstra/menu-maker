@@ -36,6 +36,7 @@ function MenusAddDishe() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
+        setErrorMsg(null)
         const form = e.currentTarget as HTMLFormElement
         const formWrapperClassName = "_formWrapper_18czy_1"
         const formWrapper = form.querySelectorAll("." + formWrapperClassName)
@@ -57,6 +58,9 @@ function MenusAddDishe() {
                     throw new Error("champ invalide")
                 }
 
+                const isNameAlreadyAddedInNewArray = newDishesArray.find((addedDishes) => addedDishes.name === nameInput.value)
+                if (isNameAlreadyAddedInNewArray) throw new Error("name already used")
+
                 const dataObject: MenuDishes = {
                     name: nameInput.value,
                     price: priceInput.value,
@@ -67,13 +71,17 @@ function MenusAddDishe() {
                 newDishesArray.push(dataObject)
             })
 
-            if (!errorMsg) return
-
             const categoryToUpdate: Array<MenuDishes> = menuData[categoryNameInPath]
+
+            // check if a dishe name is already used in the current array
+            categoryToUpdate.forEach((actualDishe) => {
+                const isNameUsed = newDishesArray.find((newDishe) => newDishe.name === actualDishe.name)
+                if (isNameUsed) throw new Error("name already used")
+            })
 
             const updatedMenuData: MenuData = {
                 ...menuData,
-                [categoryNameInPath]: [...categoryToUpdate.filter((object) => object.name !== disheNameInPath), ...newDishesArray]
+                [categoryNameInPath]: [...categoryToUpdate.filter((currentDishe) => currentDishe.name !== disheNameInPath), ...newDishesArray]
             }
 
             setMenuData(updatedMenuData)
