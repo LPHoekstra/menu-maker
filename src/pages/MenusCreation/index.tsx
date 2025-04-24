@@ -45,8 +45,8 @@ function MenusCreation() {
                                 <h3 className={m.headingWrapper__title}>Ajoutez vos plats</h3>
                             </div>
                             <div className={`${m.accordionsWrapper} ${isDishesAccordionsActive ? m.accordionsWrapper_active : ""}`}>
-                                {Object.keys(menuData).map((menuName) => (
-                                    <MenuCreatedCategory key={menuName} menuName={menuName} />
+                                {Object.keys(menuData).map((categoryName, index) => (
+                                    <MenuCreatedCategory key={`${categoryName}-${index}`} createdCategoryName={categoryName} />
                                 ))}
                                 <MenuLinkAdd to="ajouter-une-categorie" content="Catégorie (ex. : entrées, plats...)" />
                             </div>

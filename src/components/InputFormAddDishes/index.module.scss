@@ -1,0 +1,84 @@
+$content-photo-wrapper-color: #4F4F4F;
+
+.formWrapper {
+    margin-top: 2.25em;
+    margin-bottom: 1.313em;
+}
+
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.125em;
+
+    &__title {
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    &__close {
+        height: 0.75em;
+        width: 0.75em;
+        cursor: pointer;
+    }
+}
+
+.addPhotoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FBF0E3;
+    border-radius: 0.313em;
+    padding-top: 0.938em;
+    padding-bottom: 0.938em;
+    gap: 0.25em;
+
+    &__input {
+        position: absolute;
+        overflow: hidden;
+        clip-path: inset(100%);
+        width: 1px;
+        height: 1px;
+    }
+
+    &__img {
+        width: 2.188em;
+        max-height: 10.438em;
+        box-sizing: border-box;
+    }
+
+    &__label {
+        color: $content-photo-wrapper-color;
+        font-size: 0.875em;
+        cursor: pointer;
+    }
+
+    &__format {
+        color: $content-photo-wrapper-color;
+        font-size: 0.5em;
+    }
+}
+
+.nameAndPriceWrapper {
+    display: flex;
+    gap: 0.938em;
+    margin-bottom: 0.875em;
+    margin-top: 1.438em;
+}
+
+.inputLabelWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625em;
+    
+    &__label {
+        font-size: 0.875em;
+    }
+
+    &__input {
+        border: solid #C4C4C4 1px;
+        border-radius: 0.188em;
+        font-size: 1.125em;
+        padding: 0.75em;
+    }
+}
