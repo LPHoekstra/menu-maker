@@ -53,7 +53,7 @@ function MenusAddDishe() {
                 if (nameInput.value === ""
                     // || imgInput.value === ""
                     || priceInput.value === ""
-                    || descInput.value === ""
+                    // || descInput.value === ""
                 ) {
                     throw new Error("champ invalide")
                 }
@@ -74,10 +74,12 @@ function MenusAddDishe() {
             const categoryToUpdate: Array<MenuDishes> = menuData[categoryNameInPath]
 
             // check if a dishe name is already used in the current array
-            categoryToUpdate.forEach((actualDishe) => {
-                const isNameUsed = newDishesArray.find((newDishe) => newDishe.name === actualDishe.name)
-                if (isNameUsed) throw new Error("name already used")
-            })
+            if (!disheNameInPath) {
+                categoryToUpdate.forEach((actualDishe) => {
+                    const isNameUsed = newDishesArray.find((newDishe) => newDishe.name === actualDishe.name)
+                    if (isNameUsed) throw new Error("name already used")
+                })
+            }
 
             const updatedMenuData: MenuData = {
                 ...menuData,
