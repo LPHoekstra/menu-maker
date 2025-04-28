@@ -5,16 +5,16 @@
 }
 
 html {
-    font-family: "Work Sans", sans-serif;
+    font-family: $work-sans-font-family;
 }
 
 h1 {
-    font-family: "Epilogue", sans-serif;
+    font-family: $epilogue-font-family;
     font-weight: 500;
 }
 
 h2 {
-    font-family: "Epilogue", sans-serif;
+    font-family: $epilogue-font-family;
     font-weight: 600;
     font-size: 1.875em;
 }

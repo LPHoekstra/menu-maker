@@ -1,0 +1,38 @@
+@use "../../styles/variables.scss" as*;
+
+.mainWrapper {
+
+    &__title {
+        font-size: 0.875em;
+        font-weight: 400;
+    }
+
+    &__colorBtn {
+        color: $white;
+        height: 47px;
+        width: 47px;
+        border-radius: 50%;
+        background: linear-gradient(#0d0d0d, #525252);
+        border: none;
+        margin-top: 7px;
+        margin-bottom: 22px;
+        cursor: pointer;
+    }
+}
+
+.typoWrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 14px;
+    margin-bottom: 22px;
+
+    &__btn {
+        width: 75px;
+        height: 80px;
+        font-size: 40px;
+        background-color: #f0f0f0;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+    }
+}
