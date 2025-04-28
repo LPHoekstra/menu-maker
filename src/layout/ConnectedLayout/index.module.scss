@@ -9,7 +9,7 @@ $left-margin-content: 3.5rem;
 .sidebar {
     box-sizing: border-box;
     min-width: 19.188em;
-    height: 100vh;
+    min-height: 100%;
     background-color: $white;
     box-shadow: 0.25em 0 1.5em 0 rgba(0, 0, 0, 0.05);
     z-index: 2;

@@ -17,7 +17,8 @@ function MenusAddDishe() {
     const param = useParams()
     const categoryNameInPath = param.categoryName as string // component is not render if no param
 
-    const disheNameInPath = param.disheName
+    const disheNameInPath: string | undefined = param.disheName
+    const isAddingDish: boolean = disheNameInPath ? false : true
     const disheInPathObject = menuData[categoryNameInPath]?.find((dishe) => dishe.name === disheNameInPath)
 
     // implement img visualisation of the uploaded photo
@@ -101,16 +102,16 @@ function MenusAddDishe() {
                 <Link to="/menus/edition-de-menu" className={m.mainWrapper__close}>
                     <img src={close} alt="Fermer la modal" />
                 </Link>
-                <h2 className={m.mainWrapper__title}>{disheNameInPath ?
-                    `Modifiez vos : ${disheNameInPath}`
-                    :
+                <h2 className={m.mainWrapper__title}>{isAddingDish ?
                     `Ajoutez vos : ${categoryNameInPath}`
+                    :
+                    `Modifiez vos : ${disheNameInPath}`
                 }</h2>
                 {/* render multiple input to have the possibility of adding multiple dishes */}
                 {numberOfAddedDishes.map((number) => (
                     <InputFormAddDishes key={number} disheNumber={number} disheInPathObject={disheInPathObject} />
                 ))}
-                {!disheNameInPath &&
+                {isAddingDish &&
                     <img src={add} alt="Ajouter un plat" onClick={incrementNumberOfDishes} className={m.mainWrapper__addDishe} />
                 }
                 {errorMsg &&

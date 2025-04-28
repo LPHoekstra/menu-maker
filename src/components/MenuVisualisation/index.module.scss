@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     min-width: 505px;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #363636;
     box-sizing: border-box;
     padding-left: 40px;
@@ -10,12 +10,17 @@
 }
 
 .menuWrapper {
-    height: 644px;
-    width: 100%;
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    height: 700px;
+    width: 425px;
     background-color: #fff;
     border-radius: 7px;
     padding: 25px;
     overflow: hidden;
+    box-sizing: border-box;
 
     &__brandingImg {
         display: block;

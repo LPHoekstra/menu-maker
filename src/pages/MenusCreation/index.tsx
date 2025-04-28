@@ -2,7 +2,7 @@ import m from "./index.module.scss"
 import MenuVisualisation from "../../components/MenuVisualisation"
 import Button from "../../components/Button"
 import { Outlet } from "react-router"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useMenuData } from "../../hooks/menuData"
 import MenuCreatedCategory from "../../components/MenuCreatedCategory"
 import MenuLinkAdd from "../../components/MenuLinkAdd"
@@ -12,12 +12,18 @@ function MenusCreation() {
     const [isCustomizationAccordionsActive, setIsCustomizationAccordionsActive] = useState<boolean>(false)
     const [isExportAccordionsActive, setIsExportAccordionsActive] = useState<boolean>(false)
     const { menuData, setMenuData } = useMenuData()
+    const ref = useRef<HTMLDivElement>(null)
+    const [contentHeight, setContentHeight] = useState<number>(0)
 
     useEffect(() => {
         const sessionMenuData = localStorage.getItem("menuData")
 
         if (sessionMenuData) setMenuData(JSON.parse(sessionMenuData))
-    }, [setMenuData])
+
+        const height = ref.current?.scrollHeight
+        if (height) setContentHeight(height)
+
+    }, [setMenuData, menuData])
 
     const handleOpenAccordionsDishes = () => {
         setDishesIsAccordionsActive(!isDishesAccordionsActive)
@@ -44,7 +50,10 @@ function MenusCreation() {
                                 <span className={m.headingWrapper__number}>1</span>
                                 <h3 className={m.headingWrapper__title}>Ajoutez vos plats</h3>
                             </div>
-                            <div className={`${m.accordionsWrapper} ${isDishesAccordionsActive ? m.accordionsWrapper_active : ""}`}>
+                            <div ref={ref}
+                                className={m.accordionsWrapper}
+                                style={{ height: isDishesAccordionsActive ? `${contentHeight}px` : "0" }}
+                            >
                                 {Object.keys(menuData).map((categoryName, index) => (
                                     <MenuCreatedCategory key={`${categoryName}-${index}`} createdCategoryName={categoryName} />
                                 ))}
