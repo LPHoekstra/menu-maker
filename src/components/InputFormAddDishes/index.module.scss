@@ -60,7 +60,8 @@ $content-photo-wrapper-color: #4F4F4F;
 }
 
 .nameAndPriceWrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 4.375em;
     gap: 0.938em;
     margin-bottom: 0.875em;
     margin-top: 1.438em;

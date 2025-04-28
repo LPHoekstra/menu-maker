@@ -101,11 +101,12 @@ function MenusAddDishe() {
                 <Link to="/menus/edition-de-menu" className={m.mainWrapper__close}>
                     <img src={close} alt="Fermer la modal" />
                 </Link>
-                {disheNameInPath ?
-                    <h2 className={m.mainWrapper__title}>Modifiez vos : {disheNameInPath}</h2>
+                <h2 className={m.mainWrapper__title}>{disheNameInPath ?
+                    `Modifiez vos : ${disheNameInPath}`
                     :
-                    <h2 className={m.mainWrapper__title}>Ajoutez vos : {categoryNameInPath}</h2>
-                }
+                    `Ajoutez vos : ${categoryNameInPath}`
+                }</h2>
+                {/* render multiple input to have the possibility of adding multiple dishes */}
                 {numberOfAddedDishes.map((number) => (
                     <InputFormAddDishes key={number} disheNumber={number} disheInPathObject={disheInPathObject} />
                 ))}
