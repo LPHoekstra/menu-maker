@@ -1,5 +1,16 @@
+@use "./variables.scss" as *;
+
 %menuCardSize {
     width: 10.563em;
     height: 16em;
     border-radius: 0.188em;
+}
+
+%change-color-btn {
+    color: $white;
+    height: 47px;
+    width: 47px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
 }

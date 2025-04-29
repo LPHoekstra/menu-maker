@@ -1,0 +1,18 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/placeholder.scss" as *;
+
+.mainWrapper {
+    position: absolute;
+    display: flex;
+    inset: 0;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 20px;
+    height: min-content;
+    width: min-content;
+    gap: 20px;
+
+    &__colorBtn {
+        @extend %change-color-btn;
+    }
+}
