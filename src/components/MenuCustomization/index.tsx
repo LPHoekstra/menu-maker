@@ -1,13 +1,29 @@
 import { useState } from "react"
-import MenuChangeColor from "../MenuChangeColor"
 import m from "./index.module.scss"
-import { availableFontFamily } from "../../utils/availableParamMenu"
+import { availableColor, availableFontFamily } from "../../utils/availableParamMenu"
+import { AvailableColor } from "../../@types/menu"
+import { useMenuData } from "../../hooks/menuData"
 
 function MenuCustomization() {
     const [isChangeColorOpen, setIsChangeColorOpen] = useState<boolean>(false)
+    const [currentColorSelected, setCurrentColorSelected] = useState<AvailableColor | undefined>(undefined)
+    const { menuData, setMenuData } = useMenuData()
 
     const setChangeColorOpen = () => {
         setIsChangeColorOpen(!isChangeColorOpen)
+    }
+
+    const setColor = (newColor: AvailableColor) => {
+        setMenuData((prev) => ({
+            ...prev,
+            style: {
+                ...menuData.style,
+                color: newColor
+            }
+        }))
+
+        setCurrentColorSelected(newColor)
+        setChangeColorOpen()
     }
 
     return (
@@ -25,9 +41,22 @@ function MenuCustomization() {
             </article>
             <article className={m.changeColorWrapper}>
                 <h3 className={m.mainWrapper__title}>Choisissez une couleur</h3>
-                <button className={m.changeColorWrapper__colorBtn} onClick={setChangeColorOpen}>+</button>
+                <button className={m.changeColorWrapper__colorBtn}
+                    style={currentColorSelected ? { background: currentColorSelected } : undefined}
+                    onClick={setChangeColorOpen}
+                >
+                    {currentColorSelected ? "" : "+"}
+                </button>
                 {isChangeColorOpen &&
-                    <MenuChangeColor setChangeColorOpen={setChangeColorOpen} />
+                    <article className={m.modalChangeColorWrapper}>
+                        {availableColor.map((color) => (
+                            <button key={color}
+                                className={m.modalChangeColorWrapper__colorBtn}
+                                style={{ backgroundColor: color }}
+                                onClick={() => setColor(color)}
+                            ></button>
+                        ))}
+                    </article>
                 }
             </article>
             {/* <article>
