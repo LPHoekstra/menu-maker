@@ -17,7 +17,7 @@ function InputFormAddDishes({ disheNumber, disheInPathObject }: InputFormAddDish
     }
 
     return (
-        <div className={m.formWrapper} ref={ref}>
+        <div className={`formWrapper ${m.formWrapper}`} ref={ref}>
             <div className={m.headerWrapper}>
                 <h3 className={m.headerWrapper__title}>Plat {disheNumber.toString()}</h3>
                 <img src={close} alt="Supprimer le plat" className={m.headerWrapper__close} onClick={deleteFormWrapper} />

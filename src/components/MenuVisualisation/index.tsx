@@ -11,7 +11,7 @@ function MenuVisualisation() {
                 <img src={mockedImgRestaurant} alt="Branding du restaurant" className={m.menuWrapper__brandingImg} />
                 <h2 className={m.menuWrapper__title}>MENU</h2>
                 <div className={m.categoriesWrapper}>
-                    {Object.entries(menuData).map((category) => (
+                    {Object.entries(menuData.content).map((category) => (
                         <div key={category[0]} className={m.categoryWrapper}>
                             <h3 className={m.categoryWrapper__title}>{category[0]}</h3>
                             <div className={m.dishesWrapper}>

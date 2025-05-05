@@ -1,5 +1,5 @@
 import { ApiResponse, UserMenus } from "../@types/api"
-import { MenuData } from "../@types/menu"
+import { MenuContent } from "../@types/menu"
 import apiClient from "./apiClient"
 /**
  * throw an error if something goes wrong
@@ -40,7 +40,7 @@ const apiUser = {
      * @param data 
      * @returns 
      */
-    createMenu: async (data: MenuData): Promise<ApiResponse<null>> => {
+    createMenu: async (data: MenuContent): Promise<ApiResponse<null>> => {
         return await apiClient("/menus/createMenu", {
             method: "POST",
             credentials: "include",
@@ -53,7 +53,7 @@ const apiUser = {
      * @param id of the menu to get
      * @returns 
      */
-    getMenu: async (id: string): Promise<ApiResponse<MenuData>> => {
+    getMenu: async (id: string): Promise<ApiResponse<MenuContent>> => {
         return await apiClient(`/menus/${id}`, {
             method: "GET",
             credentials: "include"
@@ -66,7 +66,7 @@ const apiUser = {
      * @param data
      * @returns 
      */
-    putMenu: async (id: string, data: MenuData): Promise<ApiResponse<null>> => {
+    putMenu: async (id: string, data: MenuContent): Promise<ApiResponse<null>> => {
         return await apiClient(`/menus/${id}`, {
             method: "PUT",
             credentials: "include",

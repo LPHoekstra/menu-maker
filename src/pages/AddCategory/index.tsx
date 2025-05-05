@@ -5,7 +5,7 @@ import Button from "../../components/Button"
 import m from "./index.module.scss"
 import { FormEvent, FormEventHandler, useMemo } from "react"
 import { useMenuData } from "../../hooks/menuData"
-import { MenuData } from "../../@types/menu"
+import { MenuContent } from "../../@types/menu"
 
 function AddCategory() {
     const navigate = useNavigate()
@@ -28,21 +28,24 @@ function AddCategory() {
 
         // if param.name is in path the category name is change and keep is value
         // else create the category
-        const updatedData: MenuData = param.name ?
-            { [input.value]: menuData[param.name] }
+        const updatedData: MenuContent = param.name ?
+            { [input.value]: menuData.content[param.name] }
             :
             { [input.value]: [] }
 
         // if param.name is in path the category is removed from menuData
         // else return menuData
-        const filteredData: MenuData = param.name ?
+        const filteredData: MenuContent = param.name ?
             Object.fromEntries(
-                Object.entries(menuData).filter(([key]) => key !== param.name)
+                Object.entries(menuData.content).filter(([key]) => key !== param.name)
             )
             :
-            menuData
+            menuData.content
 
-        setMenuData({ ...filteredData, ...updatedData })
+        setMenuData((prev) => ({
+            ...prev,
+            content: { ...filteredData, ...updatedData }
+        }))
 
         navigate("/menus/edition-de-menu")
     }

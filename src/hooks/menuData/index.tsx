@@ -10,7 +10,8 @@ export const useMenuData = () => {
     const menuData = context.menuData
     const setMenuData = context.setMenuData
 
-    const isEmpty = Object.keys(menuData).length === 0
+    // update the menuData in localStorage on each change
+    const isEmpty = Object.keys(menuData.content).length === 0
     if (!isEmpty) {
         localStorage.setItem("menuData", JSON.stringify(menuData))
     }

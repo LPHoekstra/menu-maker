@@ -4,7 +4,7 @@ import m from "./index.module.scss"
 import { FormEvent, useState } from "react"
 import close from "../../assets/close-dark.svg"
 import Button from "../../components/Button"
-import { MenuData, MenuDishes } from "../../@types/menu"
+import { MenuContent, MenuDishes } from "../../@types/menu"
 import { useMenuData } from "../../hooks/menuData"
 import add from "../../assets/add-cross.svg"
 import InputFormAddDishes from "../../components/InputFormAddDishes"
@@ -19,7 +19,7 @@ function MenusAddDishe() {
 
     const disheNameInPath: string | undefined = param.disheName
     const isAddingDish: boolean = disheNameInPath ? false : true
-    const disheInPathObject = menuData[categoryNameInPath]?.find((dishe) => dishe.name === disheNameInPath)
+    const disheInPathObject = menuData.content[categoryNameInPath]?.find((dishe) => dishe.name === disheNameInPath)
 
     // implement img visualisation of the uploaded photo
 
@@ -39,8 +39,7 @@ function MenusAddDishe() {
         e.preventDefault()
         setErrorMsg(null)
         const form = e.currentTarget as HTMLFormElement
-        const formWrapperClassName = "_formWrapper_18czy_1"
-        const formWrapper = form.querySelectorAll("." + formWrapperClassName)
+        const formWrapper = form.querySelectorAll(".formWrapper")
 
         const newDishesArray: Array<MenuDishes> = []
 
@@ -72,9 +71,10 @@ function MenusAddDishe() {
                 newDishesArray.push(dataObject)
             })
 
-            const categoryToUpdate: Array<MenuDishes> = menuData[categoryNameInPath]
+            // array of the selected category
+            const categoryToUpdate: Array<MenuDishes> = menuData.content[categoryNameInPath]
 
-            // check if a dishe name is already used in the current array
+            // check if a dish name is already used in the current array
             if (!disheNameInPath) {
                 categoryToUpdate.forEach((actualDishe) => {
                     const isNameUsed = newDishesArray.find((newDishe) => newDishe.name === actualDishe.name)
@@ -82,12 +82,17 @@ function MenusAddDishe() {
                 })
             }
 
-            const updatedMenuData: MenuData = {
-                ...menuData,
-                [categoryNameInPath]: [...categoryToUpdate.filter((currentDishe) => currentDishe.name !== disheNameInPath), ...newDishesArray]
+            const updatedMenuContent: MenuContent = {
+                ...menuData.content,
+                [categoryNameInPath]: [...categoryToUpdate.filter((currentDishe) => // delete the dish with the name passed in param (dish modification)
+                    currentDishe.name !== disheNameInPath), ...newDishesArray
+                ]
             }
 
-            setMenuData(updatedMenuData)
+            setMenuData((prev) => ({
+                ...prev,
+                content: updatedMenuContent
+            }))
 
             navigate("/menus/edition-de-menu")
         } catch (e) {
