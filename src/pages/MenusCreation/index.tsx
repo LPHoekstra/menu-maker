@@ -1,16 +1,19 @@
 import m from "./index.module.scss"
 import MenuVisualisation from "../../components/MenuVisualisation"
 import Button from "../../components/Button"
-import { Outlet } from "react-router"
+import { Outlet, useNavigate } from "react-router"
 import { useEffect, useRef, useState } from "react"
 import { useMenuData } from "../../hooks/menuData"
 import MenuCreatedCategory from "../../components/MenuCreatedCategory"
 import MenuLinkAdd from "../../components/MenuLinkAdd"
 import MenuCustomization from "../../components/MenuCustomization"
+import apiUser from "../../api/apiUser"
 
 function MenusCreation() {
+    const navigate = useNavigate()
     const { menuData, setMenuData } = useMenuData()
 
+    const [btnContent, setBtnContent] = useState<"Suivant" | "Enregistrer" | "Valider">("Suivant")
     const [isCurrentSectionValide, setIsCurrentSectionValide] = useState<boolean>(false)
 
     // is the section is validated
@@ -58,19 +61,32 @@ function MenusCreation() {
         }
     }, [isDishValidated, menuData])
 
-    const handleNextAction = () => {
+    const handleNextAction = async () => {
         // on dish section
         if (isDishAccordionsActive && isCurrentSectionValide) {
             setIsDishAccordionsActive(false)
             setIsDishValidated(true)
             setIsCustomizationAccordionsActive(true)
+            setBtnContent("Enregistrer")
         }
 
         // on customization section
         if (isCustomizationAccordionsActive) {
-            setIsCustomizationAccordionsActive(false)
-            setIsCustomizationValidated(true)
-            setIsExportAccordionsActive(true)
+            try {
+                await apiUser.createMenu(menuData)
+
+                setIsCustomizationAccordionsActive(false)
+                setIsCustomizationValidated(true)
+                setIsExportAccordionsActive(true)
+                setBtnContent("Valider")
+            } catch (e) {
+                console.error(e)
+            }
+        }
+
+        // on export section
+        if (isExportAccordionsActive) {
+            navigate("/menus")
         }
     }
 
@@ -82,6 +98,7 @@ function MenusCreation() {
         // set validated
         setIsDishValidated(false)
         setIsCustomizationValidated(false)
+        setBtnContent("Suivant")
     }
 
     const handleModifyCustomization = () => {
@@ -90,6 +107,7 @@ function MenusCreation() {
         setIsExportAccordionsActive(false)
         // set validated
         setIsCustomizationValidated(false)
+        setBtnContent("Enregistrer")
     }
 
     return (
@@ -159,7 +177,7 @@ function MenusCreation() {
                             </section>
                         </li>
                     </ul>
-                    <Button content="Suivant" type="full" onClick={handleNextAction} isClickable={isCurrentSectionValide} />
+                    <Button content={btnContent} type="full" onClick={handleNextAction} isClickable={isCurrentSectionValide} />
                 </section>
                 <MenuVisualisation />
             </main>

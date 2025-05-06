@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import m from "./index.module.scss"
 import { availableColor, availableFontFamily } from "../../utils/availableParamMenu"
 import { AvailableColor, AvailableFontFamily } from "../../@types/menu"
@@ -24,10 +24,9 @@ function MenuCustomization() {
         }))
     }
 
-    const setChangeFontFamily = (newFontFamily: AvailableFontFamily) => {
-        setStyleMenuData(newFontFamily)
-        setCurrentFontFamilySelected(newFontFamily)
-    }
+    useEffect(() => {
+        setCurrentFontFamilySelected(menuData.style.fontFamily)
+    }, [menuData.style.color, menuData.style.fontFamily])
 
     const setColor = (newColor: AvailableColor) => {
         setStyleMenuData(undefined, newColor)
@@ -44,7 +43,7 @@ function MenuCustomization() {
                         <button key={fontFamily}
                             className={`${m.typoWrapper__btn} ${currentFontFamilySelected === fontFamily ? m.typoWrapper__btn_selected : ""}`}
                             style={{ fontFamily: fontFamily }}
-                            onClick={() => setChangeFontFamily(fontFamily)}
+                            onClick={() => setStyleMenuData(fontFamily)}
                         >Aa</button>
                     ))}
                 </div>

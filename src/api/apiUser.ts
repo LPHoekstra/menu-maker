@@ -1,5 +1,5 @@
 import { ApiResponse, UserMenus } from "../@types/api"
-import { MenuContent } from "../@types/menu"
+import { MenuContent, MenuData } from "../@types/menu"
 import apiClient from "./apiClient"
 /**
  * throw an error if something goes wrong
@@ -40,7 +40,7 @@ const apiUser = {
      * @param data 
      * @returns 
      */
-    createMenu: async (data: MenuContent): Promise<ApiResponse<null>> => {
+    createMenu: async (data: MenuData): Promise<ApiResponse<null>> => {
         return await apiClient("/menus/createMenu", {
             method: "POST",
             credentials: "include",
