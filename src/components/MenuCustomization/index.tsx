@@ -1,16 +1,29 @@
 import { useState } from "react"
 import m from "./index.module.scss"
 import { availableColor, availableFontFamily } from "../../utils/availableParamMenu"
-import { AvailableColor } from "../../@types/menu"
+import { AvailableColor, AvailableFontFamily } from "../../@types/menu"
 import { useMenuData } from "../../hooks/menuData"
 
 function MenuCustomization() {
     const [isChangeColorOpen, setIsChangeColorOpen] = useState<boolean>(false)
     const [currentColorSelected, setCurrentColorSelected] = useState<AvailableColor | undefined>(undefined)
+    const [currentFontFamilySelected, setCurrentFontFamilySelected] = useState<AvailableFontFamily | undefined>(undefined)
     const { menuData, setMenuData } = useMenuData()
 
     const setChangeColorOpen = () => {
         setIsChangeColorOpen(!isChangeColorOpen)
+    }
+
+    const setChangeFontFamily = (newFontFamily: AvailableFontFamily) => {
+        setMenuData((prev) => ({
+            ...prev,
+            style: {
+                ...menuData.style,
+                fontFamily: newFontFamily
+            }
+        }))
+
+        setCurrentFontFamilySelected(newFontFamily)
     }
 
     const setColor = (newColor: AvailableColor) => {
@@ -33,8 +46,9 @@ function MenuCustomization() {
                 <div className={m.typoWrapper}>
                     {availableFontFamily.map((fontFamily) => (
                         <button key={fontFamily}
-                            className={m.typoWrapper__btn}
+                            className={`${m.typoWrapper__btn} ${currentFontFamilySelected === fontFamily ? m.typoWrapper__btn_selected : ""}`}
                             style={{ fontFamily: fontFamily }}
+                            onClick={() => setChangeFontFamily(fontFamily)}
                         >Aa</button>
                     ))}
                 </div>
