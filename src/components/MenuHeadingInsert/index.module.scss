@@ -1,0 +1,42 @@
+@use "../../styles/variables.scss" as *;
+
+.headingWrapper {
+    padding: 2.063em 3.375em 2.063em 3.75em;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    &__number {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $black;
+        border-radius: 50%;
+        color: $white;
+        font-size: 0.875em;
+        width: 1.375em;
+        height: 1.375em;
+        left: 1.75em;
+
+        &_validated {
+            background-color: $main-green;
+        }
+    }
+
+    &__title {
+        font-family: $work-sans-font-family;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    &__modify {
+        font-size: 0.75em;
+        color: $modify-color;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

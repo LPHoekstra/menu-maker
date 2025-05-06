@@ -8,6 +8,7 @@ import MenuCreatedCategory from "../../components/MenuCreatedCategory"
 import MenuLinkAdd from "../../components/MenuLinkAdd"
 import MenuCustomization from "../../components/MenuCustomization"
 import apiUser from "../../api/apiUser"
+import MenuHeadingInsert from "../../components/MenuHeadingInsert"
 
 function MenusCreation() {
     const navigate = useNavigate()
@@ -121,13 +122,7 @@ function MenusCreation() {
                     <ul className={m.insertWrapper}>
                         <li className={`${m.insertWrapper__liItem} ${m.insertWrapper__liItem_top}`}>
                             <section>
-                                <div className={m.headingWrapper}>
-                                    <div>
-                                        <span className={`${m.headingWrapper__number} ${isDishValidated ? m.headingWrapper__number_validated : ""}`}>1</span>
-                                        <h2 className={m.headingWrapper__title}>Ajoutez vos plats</h2>
-                                    </div>
-                                    {isDishValidated && <span className={m.headingWrapper__modify} onClick={handleModifyDish}>modifier</span>}
-                                </div>
+                                <MenuHeadingInsert title="Ajoutez vos plats" stepNumber={1} isSectionValide={isDishValidated} handleOnClick={handleModifyDish} />
                                 <div ref={addDishRef}
                                     className={m.accordionsWrapper}
                                     style={{ height: isDishAccordionsActive ? `${addDishHeight}px` : "0" }}
@@ -143,13 +138,7 @@ function MenusCreation() {
                         </li>
                         <li className={m.insertWrapper__liItem}>
                             <section>
-                                <div className={m.headingWrapper}>
-                                    <div>
-                                        <span className={`${m.headingWrapper__number} ${isCustomizationValidated ? m.headingWrapper__number_validated : ""}`}>2</span>
-                                        <h3 className={m.headingWrapper__title}>Personnalisez votre menu</h3>
-                                    </div>
-                                    {isCustomizationValidated && <span className={m.headingWrapper__modify} onClick={handleModifyCustomization}>modifier</span>}
-                                </div>
+                                <MenuHeadingInsert title="Personnalisez votre menu" stepNumber={2} isSectionValide={isCustomizationValidated} handleOnClick={handleModifyCustomization} />
                                 <div ref={customizationRef}
                                     className={m.accordionsWrapper}
                                     style={{ height: isCustomizationAccordionsActive ? `${CustomizationHeight}px` : "0" }}
@@ -160,10 +149,7 @@ function MenusCreation() {
                         </li>
                         <li className={m.insertWrapper__liItem}>
                             <section>
-                                <div className={m.headingWrapper}>
-                                    <span className={m.headingWrapper__number}>3</span>
-                                    <h3 className={m.headingWrapper__title}>Exportez & diffusez</h3>
-                                </div>
+                                <MenuHeadingInsert title="Exportez & diffusez" stepNumber={3} />
                                 <div ref={exportRef}
                                     className={m.accordionsWrapper}
                                     style={{ height: isExportAccordionsActive ? `${exportHeight}px` : "0" }}
