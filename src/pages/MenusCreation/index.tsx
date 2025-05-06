@@ -65,10 +65,7 @@ function MenusCreation() {
     const handleNextAction = async () => {
         // on dish section
         if (isDishAccordionsActive && isCurrentSectionValide) {
-            setIsDishAccordionsActive(false)
-            setIsDishValidated(true)
-            setIsCustomizationAccordionsActive(true)
-            setBtnContent("Enregistrer")
+            handleModifyCustomization()
         }
 
         // on customization section
@@ -76,10 +73,7 @@ function MenusCreation() {
             try {
                 await apiUser.createMenu(menuData)
 
-                setIsCustomizationAccordionsActive(false)
-                setIsCustomizationValidated(true)
-                setIsExportAccordionsActive(true)
-                setBtnContent("Valider")
+                handleModifyExport()
             } catch (e) {
                 console.error(e)
             }
@@ -91,6 +85,7 @@ function MenusCreation() {
         }
     }
 
+    // to optimise ? set a new state only for new value
     const handleModifyDish = () => {
         // set accordions
         setIsDishAccordionsActive(true)
@@ -104,11 +99,24 @@ function MenusCreation() {
 
     const handleModifyCustomization = () => {
         // set accordions
+        setIsDishAccordionsActive(false)
         setIsCustomizationAccordionsActive(true)
         setIsExportAccordionsActive(false)
         // set validated
+        setIsDishValidated(true)
         setIsCustomizationValidated(false)
         setBtnContent("Enregistrer")
+    }
+
+    const handleModifyExport = () => {
+        // set accordions
+        setIsDishAccordionsActive(false)
+        setIsCustomizationAccordionsActive(false)
+        setIsExportAccordionsActive(true)
+        // set validated
+        setIsDishValidated(true)
+        setIsCustomizationValidated(true)
+        setBtnContent("Valider")
     }
 
     return (

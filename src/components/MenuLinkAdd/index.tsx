@@ -7,6 +7,11 @@ interface MenuLinkAddProps {
     content: "Catégorie (ex. : entrées, plats...)" | "Plats (ex. : pâtes, gryros, coca...)"
 }
 
+/**
+ * used for opening the modal to add a category or some dishes
+ * @param param0 
+ * @returns 
+ */
 function MenuLinkAdd({ to, content }: MenuLinkAddProps) {
     const isAddSpaceForDishe = to !== "ajouter-une-categorie" ? true : false
 
