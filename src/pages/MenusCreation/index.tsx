@@ -9,17 +9,22 @@ import MenuLinkAdd from "../../components/MenuLinkAdd"
 import MenuCustomization from "../../components/MenuCustomization"
 
 function MenusCreation() {
-    const [isDishesAccordionsActive, setDishesIsAccordionsActive] = useState<boolean>(false)
-    const [isCustomizationAccordionsActive, setIsCustomizationAccordionsActive] = useState<boolean>(false)
-    const [isExportAccordionsActive, setIsExportAccordionsActive] = useState<boolean>(false)
     const { menuData, setMenuData } = useMenuData()
 
+    // is the section is validated
+    const [isDishValidated, setIsDishValidated] = useState<boolean>(false)
+    const [isCustomizationValidated, setIsCustomizationValidated] = useState<boolean>(false)
+
+    // active accordions 
+    const [isDishAccordionsActive, setIsDishAccordionsActive] = useState<boolean>(true)
+    const [isCustomizationAccordionsActive, setIsCustomizationAccordionsActive] = useState<boolean>(false)
+    const [isExportAccordionsActive, setIsExportAccordionsActive] = useState<boolean>(false)
+
+    // ref and dynamic height for accordions
     const addDishRef = useRef<HTMLDivElement>(null)
     const [addDishHeight, setAddDishHeight] = useState<number>(0)
-
     const customizationRef = useRef<HTMLDivElement>(null)
     const [CustomizationHeight, setCustomizationHeight] = useState<number>(0)
-
     const exportRef = useRef<HTMLDivElement>(null)
     const [exportHeight, setExportHeight] = useState<number>(0)
 
@@ -41,20 +46,43 @@ function MenusCreation() {
         if (exportHeight) setExportHeight(exportHeight)
     }, [menuData])
 
-    const handleOpenAccordionsDishes = () => {
-        setDishesIsAccordionsActive(!isDishesAccordionsActive)
+    const handleNextAction = () => {
+        // on dish accordions
+        if (isDishAccordionsActive) {
+            setIsDishAccordionsActive(false)
+            setIsDishValidated(true)
+            setIsCustomizationAccordionsActive(true)
+        }
+
+        // on customization accordions
+        if (isCustomizationAccordionsActive) {
+            setIsCustomizationAccordionsActive(false)
+            setIsCustomizationValidated(true)
+            setIsExportAccordionsActive(true)
+        }
     }
 
-    const handleOpenAccordionsCustomization = () => {
-        setIsCustomizationAccordionsActive(!isCustomizationAccordionsActive)
+    const handleModifyDish = () => {
+        // set accordions
+        setIsDishAccordionsActive(true)
+        setIsCustomizationAccordionsActive(false)
+        setIsExportAccordionsActive(false)
+        // set validated
+        setIsDishValidated(false)
+        setIsCustomizationValidated(false)
     }
 
-    const handleOpenAccordionsExport = () => {
-        setIsExportAccordionsActive(!isExportAccordionsActive)
+    const handleModifyCustomization = () => {
+        // set accordions
+        setIsCustomizationAccordionsActive(true)
+        setIsExportAccordionsActive(false)
+        // set validated
+        setIsCustomizationValidated(false)
     }
 
     return (
         <>
+            {/* to render modal */}
             <Outlet />
             <main className={m.main}>
                 <section className={m.createMenuSection}>
@@ -63,13 +91,16 @@ function MenusCreation() {
                     <ul className={m.insertWrapper}>
                         <li className={`${m.insertWrapper__liItem} ${m.insertWrapper__liItem_top}`}>
                             <section>
-                                <div className={m.headingWrapper} onClick={handleOpenAccordionsDishes}>
-                                    <span className={m.headingWrapper__number}>1</span>
-                                    <h2 className={m.headingWrapper__title}>Ajoutez vos plats</h2>
+                                <div className={m.headingWrapper}>
+                                    <div>
+                                        <span className={`${m.headingWrapper__number} ${isDishValidated ? m.headingWrapper__number_validated : ""}`}>1</span>
+                                        <h2 className={m.headingWrapper__title}>Ajoutez vos plats</h2>
+                                    </div>
+                                    {isDishValidated && <span className={m.headingWrapper__modify} onClick={handleModifyDish}>modifier</span>}
                                 </div>
                                 <div ref={addDishRef}
                                     className={m.accordionsWrapper}
-                                    style={{ height: isDishesAccordionsActive ? `${addDishHeight}px` : "0" }}
+                                    style={{ height: isDishAccordionsActive ? `${addDishHeight}px` : "0" }}
                                 >
                                     <div className={m.addDishWrapper}>
                                         {Object.keys(menuData.content).map((categoryName, index) => (
@@ -82,9 +113,12 @@ function MenusCreation() {
                         </li>
                         <li className={m.insertWrapper__liItem}>
                             <section>
-                                <div className={m.headingWrapper} onClick={handleOpenAccordionsCustomization}>
-                                    <span className={m.headingWrapper__number}>2</span>
-                                    <h3 className={m.headingWrapper__title}>Personnalisez votre menu</h3>
+                                <div className={m.headingWrapper}>
+                                    <div>
+                                        <span className={`${m.headingWrapper__number} ${isCustomizationValidated ? m.headingWrapper__number_validated : ""}`}>2</span>
+                                        <h3 className={m.headingWrapper__title}>Personnalisez votre menu</h3>
+                                    </div>
+                                    {isCustomizationValidated && <span className={m.headingWrapper__modify} onClick={handleModifyCustomization}>modifier</span>}
                                 </div>
                                 <div ref={customizationRef}
                                     className={m.accordionsWrapper}
@@ -96,7 +130,7 @@ function MenusCreation() {
                         </li>
                         <li className={m.insertWrapper__liItem}>
                             <section>
-                                <div className={m.headingWrapper} onClick={handleOpenAccordionsExport}>
+                                <div className={m.headingWrapper}>
                                     <span className={m.headingWrapper__number}>3</span>
                                     <h3 className={m.headingWrapper__title}>Exportez & diffusez</h3>
                                 </div>
@@ -113,7 +147,7 @@ function MenusCreation() {
                             </section>
                         </li>
                     </ul>
-                    <Button content="Suivant" type="full" />
+                    <Button content="Suivant" type="full" onClick={handleNextAction} />
                 </section>
                 <MenuVisualisation />
             </main>

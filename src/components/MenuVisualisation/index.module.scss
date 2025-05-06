@@ -1,24 +1,26 @@
+@use "../../styles/variables.scss" as *;
+
 .mainWrapper {
     display: flex;
     align-items: center;
-    min-width: 505px;
+    min-width: 31.563em;
     min-height: 100vh;
     background-color: #363636;
     box-sizing: border-box;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
 }
 
 .menuWrapper {
     position: fixed;
     top: 50%;
-    right: 40px;
+    right: 2.5em;
     transform: translateY(-50%);
-    height: 700px;
-    width: 425px;
-    background-color: #fff;
-    border-radius: 7px;
-    padding: 25px;
+    height: 43.75em;
+    width: 26.563em;
+    background-color: $white;
+    border-radius: 0.438em;
+    padding: 1.563em;
     overflow: hidden;
     box-sizing: border-box;
 
@@ -29,11 +31,11 @@
 
     &__title {
         font-weight: 400;
-        margin-bottom: 24px;
+        margin-bottom: 1.5em;
     }
 }
 
-$column-gap: 40px;
+$column-gap: 2.5em;
 %gridChildCategoriesWrapper {
     grid-column: span 2 / span 2;
 
@@ -46,7 +48,7 @@ $column-gap: 40px;
 
 .categoriesWrapper {
     display: grid;
-    row-gap: 23px;
+    row-gap: 1.438em;
     column-gap: $column-gap;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: min-content;
@@ -64,37 +66,37 @@ $column-gap: 40px;
     width: 100%;
 
     &__title {
-        font-size: 14px;
-        margin-bottom: 14px;
+        font-size: 0.875em;
+        margin-bottom: 0.875em;
         display: flex;
-        gap: 10px;
+        gap: 0.625em;
         align-items: end;
 
         &_line {
             width: 100%;
             height: 1px;
-            background-color: #000;
-            margin-bottom: 4px;
+            background-color: $black;
+            margin-bottom: 0.25em;
         }
     }
 }
 
-$font-size-dish: 12px;
+$font-size-dish: 0.75em;
 .dishWrapper {
     font-size: $font-size-dish;
 
     &_withDescription {
-        margin-bottom: 22px;
+        margin-bottom: 1.375em;
     }
 
     &_withoutDescription {
-        margin-bottom: 14px;
+        margin-bottom: 0.875em;
     }
 
     &__nameAndPriceWrapper {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 6px;
+        margin-bottom: 0.375em;
     }
 
     &__name {
