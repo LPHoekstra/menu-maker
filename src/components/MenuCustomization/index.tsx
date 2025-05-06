@@ -14,27 +14,23 @@ function MenuCustomization() {
         setIsChangeColorOpen(!isChangeColorOpen)
     }
 
-    const setChangeFontFamily = (newFontFamily: AvailableFontFamily) => {
+    const setStyleMenuData = (newFontFamily?: AvailableFontFamily, newColor?: AvailableColor) => {
         setMenuData((prev) => ({
             ...prev,
             style: {
-                ...menuData.style,
-                fontFamily: newFontFamily
+                fontFamily: newFontFamily ? newFontFamily : menuData.style.fontFamily,
+                color: newColor ? newColor : menuData.style.color
             }
         }))
+    }
 
+    const setChangeFontFamily = (newFontFamily: AvailableFontFamily) => {
+        setStyleMenuData(newFontFamily)
         setCurrentFontFamilySelected(newFontFamily)
     }
 
     const setColor = (newColor: AvailableColor) => {
-        setMenuData((prev) => ({
-            ...prev,
-            style: {
-                ...menuData.style,
-                color: newColor
-            }
-        }))
-
+        setStyleMenuData(undefined, newColor)
         setCurrentColorSelected(newColor)
         setChangeColorOpen()
     }
