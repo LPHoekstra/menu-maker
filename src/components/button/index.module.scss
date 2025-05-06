@@ -9,22 +9,6 @@ $border-radius: 0.313em;
     font-weight: 500;
     z-index: 1;
     
-    &_full {
-        background: linear-gradient(to right, $main-green, #9FD2C6);
-        border: none;
-        color: $white;
-    }
-    
-    &_empty {
-        background: none;
-        border: solid 1px $secondary-green;
-        color: $secondary-green;
-
-        &:hover {
-            color: $white;
-        }
-    }
-
     &::after {
         content: "";
         position: absolute;
@@ -42,6 +26,33 @@ $border-radius: 0.313em;
     &:hover {
         &::after {
             opacity: 1;
+        }
+    }
+
+    &_full {
+        background: linear-gradient(to right, $main-green, #9FD2C6);
+        border: none;
+        color: $white;
+    }
+    
+    &_empty {
+        background: none;
+        border: solid 1px $secondary-green;
+        color: $secondary-green;
+
+        &:hover {
+            color: $white;
+        }
+    }
+
+    &_notClickable {
+        cursor: not-allowed;
+        background: $not-clickable-btn-background-color;
+
+        &:hover {
+            &::after {
+                opacity: 0;
+            }
         }
     }
 }

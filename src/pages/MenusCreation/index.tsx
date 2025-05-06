@@ -11,6 +11,8 @@ import MenuCustomization from "../../components/MenuCustomization"
 function MenusCreation() {
     const { menuData, setMenuData } = useMenuData()
 
+    const [isCurrentSectionValide, setIsCurrentSectionValide] = useState<boolean>(false)
+
     // is the section is validated
     const [isDishValidated, setIsDishValidated] = useState<boolean>(false)
     const [isCustomizationValidated, setIsCustomizationValidated] = useState<boolean>(false)
@@ -46,15 +48,25 @@ function MenusCreation() {
         if (exportHeight) setExportHeight(exportHeight)
     }, [menuData])
 
+    // is the dish section is valid
+    useEffect(() => {
+        if (!isDishValidated) {
+            const isACategory = Object.keys(menuData.content).length !== 0
+            const isADishInACategory = Object.values(menuData.content)[0]?.length !== 0
+            if (isADishInACategory && isACategory) setIsCurrentSectionValide(true)
+            else setIsCurrentSectionValide(false)
+        }
+    }, [isDishValidated, menuData])
+
     const handleNextAction = () => {
-        // on dish accordions
-        if (isDishAccordionsActive) {
+        // on dish section
+        if (isDishAccordionsActive && isCurrentSectionValide) {
             setIsDishAccordionsActive(false)
             setIsDishValidated(true)
             setIsCustomizationAccordionsActive(true)
         }
 
-        // on customization accordions
+        // on customization section
         if (isCustomizationAccordionsActive) {
             setIsCustomizationAccordionsActive(false)
             setIsCustomizationValidated(true)
@@ -147,7 +159,7 @@ function MenusCreation() {
                             </section>
                         </li>
                     </ul>
-                    <Button content="Suivant" type="full" onClick={handleNextAction} />
+                    <Button content="Suivant" type="full" onClick={handleNextAction} isClickable={isCurrentSectionValide} />
                 </section>
                 <MenuVisualisation />
             </main>
