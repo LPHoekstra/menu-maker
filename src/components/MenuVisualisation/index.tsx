@@ -9,7 +9,7 @@ function MenuVisualisation() {
         <section className={m.mainWrapper}>
             <div className={m.menuWrapper} style={{ fontFamily: menuData.style.fontFamily }}>
                 <img src={mockedImgRestaurant} alt="Branding du restaurant" className={m.menuWrapper__brandingImg} />
-                <h2 style={{ color: menuData.style.color }} className={m.menuWrapper__title}>MENU</h2>
+                <h2 style={{ color: menuData.style.color, fontFamily: menuData.style.fontFamily }} className={m.menuWrapper__title}>MENU</h2>
                 <div className={m.categoriesWrapper}>
                     {Object.entries(menuData.content).map((category) => (
                         <div key={category[0]} className={m.categoryWrapper}>

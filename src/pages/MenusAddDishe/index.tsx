@@ -85,7 +85,7 @@ function MenusAddDishe() {
             const updatedMenuContent: MenuContent = {
                 ...menuData.content,
                 [categoryNameInPath]: [...categoryToUpdate.filter((currentDishe) => // delete the dish with the name passed in param (dish modification)
-                    currentDishe.name !== disheNameInPath), ...newDishesArray
+                    currentDishe.name !== disheNameInPath), ...newDishesArray // and add the new created dishes
                 ]
             }
 

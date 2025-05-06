@@ -15,10 +15,13 @@ function MenusCreation() {
     const { menuData, setMenuData } = useMenuData()
 
     const addDishRef = useRef<HTMLDivElement>(null)
-    const [contentHeight, setContentHeight] = useState<number>(0)
+    const [addDishHeight, setAddDishHeight] = useState<number>(0)
 
-    const personaliseRef = useRef<HTMLDivElement>(null)
-    const [contentHeightCustom, setContentHeightCustom] = useState<number>(0)
+    const customizationRef = useRef<HTMLDivElement>(null)
+    const [CustomizationHeight, setCustomizationHeight] = useState<number>(0)
+
+    const exportRef = useRef<HTMLDivElement>(null)
+    const [exportHeight, setExportHeight] = useState<number>(0)
 
     // get menuData from localStorage
     useEffect(() => {
@@ -28,18 +31,21 @@ function MenusCreation() {
 
     // set the height of accordions
     useEffect(() => {
-        const dishesHeight = addDishRef.current?.scrollHeight
-        if (dishesHeight) setContentHeight(dishesHeight)
+        const dishHeight = addDishRef.current?.scrollHeight
+        if (dishHeight) setAddDishHeight(dishHeight)
 
-        const customHeight = personaliseRef.current?.scrollHeight
-        if (customHeight) setContentHeightCustom(customHeight)
+        const customizationHeight = customizationRef.current?.scrollHeight
+        if (customizationHeight) setCustomizationHeight(customizationHeight)
+
+        const exportHeight = exportRef.current?.scrollHeight
+        if (exportHeight) setExportHeight(exportHeight)
     }, [menuData])
 
     const handleOpenAccordionsDishes = () => {
         setDishesIsAccordionsActive(!isDishesAccordionsActive)
     }
 
-    const handleOpenAccordionsCustom = () => {
+    const handleOpenAccordionsCustomization = () => {
         setIsCustomizationAccordionsActive(!isCustomizationAccordionsActive)
     }
 
@@ -63,24 +69,26 @@ function MenusCreation() {
                                 </div>
                                 <div ref={addDishRef}
                                     className={m.accordionsWrapper}
-                                    style={{ height: isDishesAccordionsActive ? `${contentHeight}px` : "0" }}
+                                    style={{ height: isDishesAccordionsActive ? `${addDishHeight}px` : "0" }}
                                 >
-                                    {Object.keys(menuData.content).map((categoryName, index) => (
-                                        <MenuCreatedCategory key={`${categoryName}-${index}`} createdCategoryName={categoryName} />
-                                    ))}
-                                    <MenuLinkAdd to="ajouter-une-categorie" content="Catégorie (ex. : entrées, plats...)" />
+                                    <div className={m.addDishWrapper}>
+                                        {Object.keys(menuData.content).map((categoryName, index) => (
+                                            <MenuCreatedCategory key={`${categoryName}-${index}`} createdCategoryName={categoryName} />
+                                        ))}
+                                        <MenuLinkAdd to="ajouter-une-categorie" content="Catégorie (ex. : entrées, plats...)" />
+                                    </div>
                                 </div>
                             </section>
                         </li>
                         <li className={m.insertWrapper__liItem}>
                             <section>
-                                <div className={m.headingWrapper} onClick={handleOpenAccordionsCustom}>
+                                <div className={m.headingWrapper} onClick={handleOpenAccordionsCustomization}>
                                     <span className={m.headingWrapper__number}>2</span>
                                     <h3 className={m.headingWrapper__title}>Personnalisez votre menu</h3>
                                 </div>
-                                <div ref={personaliseRef}
+                                <div ref={customizationRef}
                                     className={m.accordionsWrapper}
-                                    style={{ height: isCustomizationAccordionsActive ? `${contentHeightCustom}px` : "0" }}
+                                    style={{ height: isCustomizationAccordionsActive ? `${CustomizationHeight}px` : "0" }}
                                 >
                                     <MenuCustomization />
                                 </div>
@@ -92,8 +100,15 @@ function MenusCreation() {
                                     <span className={m.headingWrapper__number}>3</span>
                                     <h3 className={m.headingWrapper__title}>Exportez & diffusez</h3>
                                 </div>
-                                <div className={`${m.accordionsWrapper} ${isExportAccordionsActive ? m.accordionsWrapper_active : ""}`}>
-
+                                <div ref={exportRef}
+                                    className={m.accordionsWrapper}
+                                    style={{ height: isExportAccordionsActive ? `${exportHeight}px` : "0" }}
+                                >
+                                    <div className={m.exportWrapper}>
+                                        <Button content="Exporter en .pdf" type="empty" additionnalClass={m.exportWrapper__btn} />
+                                        <Button content="Diffuser sur Deliveroo" type="empty" additionnalClass={m.exportWrapper__btn} />
+                                        <Button content="Partager sur Instagram" type="empty" additionnalClass={m.exportWrapper__btn} />
+                                    </div>
                                 </div>
                             </section>
                         </li>

@@ -63,8 +63,22 @@
     transition: height 200ms ease-in-out;
     padding-left: 3.75em;
     padding-right: 3.375em;
-    
-    &_active {
-        height: 12.5em;
+}
+
+.addDishWrapper {
+    padding-bottom: 2.25em;
+}
+
+.exportWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875em;
+    padding-bottom: 3.75em;
+
+    &__btn {
+        box-sizing: border-box;
+        width: 16.375rem;
+        padding-top: 1.438rem;
+        padding-bottom: 1.438rem;
     }
 }
