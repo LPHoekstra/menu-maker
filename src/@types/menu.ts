@@ -2,6 +2,7 @@
 export interface MenuData {
     style: MenuStyle
     content: MenuContent
+    creationDate?: Date
 }
 
 export interface MenuStyle {

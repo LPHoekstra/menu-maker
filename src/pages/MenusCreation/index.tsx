@@ -71,6 +71,11 @@ function MenusCreation() {
         // on customization section
         if (isCustomizationAccordionsActive) {
             try {
+                const creationDate = new Date()
+                setMenuData((prev) => ({
+                    ...prev,
+                    creationDate: creationDate
+                }))
                 await apiUser.createMenu(menuData)
 
                 handleModifyExport()
