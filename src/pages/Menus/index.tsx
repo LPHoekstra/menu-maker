@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import m from "./index.module.scss"
 import { Link } from "react-router";
 import CreatedMenuCard from "../../components/CreatedMenuCard";
@@ -14,24 +14,32 @@ import apiUser from "../../api/apiUser";
 function Menus(): ReactElement {
     // handle error from the fetch
     const [userMenus, setUserMenus] = useState<Array<UserMenus> | undefined>(undefined)
+    const [error, setError] = useState<string | null>(null)
+    const isFetched = useRef(false)
 
     useEffect(() => {
         const fetchUserMenus = async () => {
             try {
                 const response: ApiResponse<Array<UserMenus>> = await apiUser.getUserMenus()
                 setUserMenus(response.data)
-            } catch (e) {
-                console.error(e)
-                setUserMenus(undefined)
+            } catch (e: unknown) {
+                if (e instanceof Error) {
+                    setError(e.message)
+                }
             }
         }
 
-        fetchUserMenus()
+        if (!isFetched.current) {
+            isFetched.current = true
+            fetchUserMenus()
+        }
     }, [])
+
 
     return (
         <main className={m.main}>
             <h1>Mes menus</h1>
+            {error && <span>{error}</span>}
             <section className={m.cardWrapper}>
                 {userMenus && userMenus.map(({ id, creationDate, imgLink }: UserMenus) => (
                     <CreatedMenuCard key={id} id={id} creationDate={creationDate} imgLink={imgLink} />
