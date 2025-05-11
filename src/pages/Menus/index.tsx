@@ -4,12 +4,7 @@ import { Link } from "react-router";
 import CreatedMenuCard from "../../components/CreatedMenuCard";
 import { ApiResponse, UserMenus } from "../../@types/api";
 import apiUser from "../../api/apiUser";
-// import menuImgMocked from "../../assets/menu-img-mock.png"
-
-// const listOfMenusMock: Array<UserMenus> = [
-//     { id: "123456789", creationDate: "6 juin 2024", imgLink: menuImgMocked },
-//     { id: "897654231", creationDate: "3 juillet 2024", imgLink: menuImgMocked }
-// ]
+import { date } from "../../utils/date";
 
 function Menus(): ReactElement {
     // handle error from the fetch
@@ -21,7 +16,25 @@ function Menus(): ReactElement {
         const fetchUserMenus = async () => {
             try {
                 const response: ApiResponse<Array<UserMenus>> = await apiUser.getUserMenus()
-                setUserMenus(response.data)
+
+                // to refactor ?
+                const data = response.data
+                data.forEach(element => {
+                    const creationDate = element.creationDate
+                    const onlyYearMonthDay = creationDate.split("T")[0]
+                    const splittedDateArray = onlyYearMonthDay.split("-")
+
+                    // change month value
+                    const month = date[Number(splittedDateArray[1]) - 1]
+                    splittedDateArray[1] = month
+
+                    // change order between year and day
+                    splittedDateArray.reverse()
+
+                    element.creationDate = splittedDateArray.join(" ")
+                });
+
+                setUserMenus(data)
             } catch (e: unknown) {
                 if (e instanceof Error) {
                     setError(e.message)
@@ -41,8 +54,8 @@ function Menus(): ReactElement {
             <h1>Mes menus</h1>
             {error && <span>{error}</span>}
             <section className={m.cardWrapper}>
-                {userMenus && userMenus.map(({ id, creationDate, imgLink }: UserMenus) => (
-                    <CreatedMenuCard key={id} id={id} creationDate={creationDate} imgLink={imgLink} />
+                {userMenus && userMenus.map(userMenu => (
+                    <CreatedMenuCard key={userMenu.id} userMenu={userMenu} />
                 ))}
                 <article>
                     <Link to="edition-de-menu" className={m.linkWrapper}>

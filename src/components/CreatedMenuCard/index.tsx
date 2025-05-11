@@ -5,12 +5,16 @@ import m from "./index.module.scss"
 import { UserMenus } from "../../@types/api"
 import apiUser from "../../api/apiUser"
 
-function CreatedMenuCard({ id, creationDate, imgLink }: UserMenus): ReactElement {
+interface CreatedMenuCardProps {
+    userMenu: UserMenus
+}
+
+function CreatedMenuCard({ userMenu }: CreatedMenuCardProps): ReactElement {
     const ref = useRef<HTMLDivElement | null>(null)
 
     const handleDelete = async () => {
         try {
-            await apiUser.deleteMenu(id)
+            await apiUser.deleteMenu(userMenu.id)
 
             ref.current?.remove()
         } catch (error) {
@@ -18,15 +22,13 @@ function CreatedMenuCard({ id, creationDate, imgLink }: UserMenus): ReactElement
         }
     }
 
-    // create a string date from creationDate props ex: 9 juin 2024 
-
     return (
         <article className={m.mainWrapper} ref={ref}>
-            <Link to={`edition-de-menu/${id}`}>
-                <img src={imgLink} alt="" className={m.mainWrapper__img} />
+            <Link to={`edition-de-menu/${userMenu.id}`}>
+                <img src={userMenu.imgLink} alt="" className={m.mainWrapper__img} />
             </Link>
-            <p className={m.mainWrapper__creationDate}>Créé le {creationDate}</p>
-            <Link to={`edition-de-menu/${id}`}>
+            <p className={m.mainWrapper__creationDate}>Créé le {userMenu.creationDate}</p>
+            <Link to={`edition-de-menu/${userMenu.id}`}>
                 <Button content="Modifier" type="full" additionnalClass={m.mainWrapper__btn} />
             </Link>
             <span className={m.mainWrapper__delete} onClick={handleDelete}>Supprimer</span>
