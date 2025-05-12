@@ -53,7 +53,7 @@ const apiUser = {
      * @param id of the menu to get
      * @returns 
      */
-    getMenu: async (id: string): Promise<ApiResponse<MenuContent>> => {
+    getMenu: async (id: string): Promise<ApiResponse<MenuData>> => {
         return await apiClient(`/menus/${id}`, {
             method: "GET",
             credentials: "include"
