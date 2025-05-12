@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import CreatedMenuCard from "../../components/CreatedMenuCard";
 import { ApiResponse, UserMenus } from "../../@types/api";
 import apiUser from "../../api/apiUser";
-import { date } from "../../utils/date";
+import { monthDate } from "../../utils/date";
 
 function Menus(): ReactElement {
     // handle error from the fetch
@@ -17,22 +17,17 @@ function Menus(): ReactElement {
             try {
                 const response: ApiResponse<Array<UserMenus>> = await apiUser.getUserMenus()
 
-                // to refactor ?
-                const data = response.data
-                data.forEach(element => {
-                    const creationDate = element.creationDate
-                    const onlyYearMonthDay = creationDate.split("T")[0]
-                    const splittedDateArray = onlyYearMonthDay.split("-")
+                const data: Array<UserMenus> = response.data.map(element => {
+                    const date: Date = new Date(element.creationDate)
+                    const day = date.getDate()
+                    const month = monthDate[date.getMonth()]
+                    const year = date.getFullYear()
 
-                    // change month value
-                    const month = date[Number(splittedDateArray[1]) - 1]
-                    splittedDateArray[1] = month
-
-                    // change order between year and day
-                    splittedDateArray.reverse()
-
-                    element.creationDate = splittedDateArray.join(" ")
-                });
+                    return {
+                        ...element,
+                        creationDate: `${day} ${month} ${year}`
+                    }
+                })
 
                 setUserMenus(data)
             } catch (e: unknown) {
