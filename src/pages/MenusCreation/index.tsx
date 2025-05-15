@@ -34,10 +34,12 @@ function MenusCreation() {
     const exportRef = useRef<HTMLDivElement>(null)
     const [exportHeight, setExportHeight] = useState<number>(0)
 
-    // get menuData from localStorage
+    // get menuData from localStorage and remove storage item editedMenu
     useEffect(() => {
         const sessionMenuData = localStorage.getItem("menuData")
         if (sessionMenuData) setMenuData(JSON.parse(sessionMenuData))
+
+        return () => sessionStorage.removeItem("editedMenu")
     }, [setMenuData])
 
     // set the height of accordions
@@ -71,12 +73,19 @@ function MenusCreation() {
         // on customization section
         if (isCustomizationAccordionsActive) {
             try {
-                const creationDate = new Date()
-                setMenuData((prev) => ({
-                    ...prev,
-                    creationDate: creationDate
-                }))
-                await apiUser.createMenu(menuData)
+                // if an editedMenu item is in session storage update the menu
+                const isMenuEdited = sessionStorage.getItem("editedMenu")
+                if (isMenuEdited) {
+                    await apiUser.putMenu(isMenuEdited, menuData)
+                    sessionStorage.removeItem("editedMenu")
+                } else {
+                    const creationDate = new Date()
+                    setMenuData((prev) => ({
+                        ...prev,
+                        creationDate: creationDate
+                    }))
+                    await apiUser.createMenu(menuData)
+                }
 
                 handleModifyExport()
             } catch (e) {

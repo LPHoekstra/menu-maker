@@ -16,6 +16,7 @@ function MenuEdit() {
                     const response = await apiUser.getMenu(id)
 
                     setMenuData(response.data)
+                    sessionStorage.setItem("editedMenu", id)
                 }
             } catch (e) {
                 console.error(e)
